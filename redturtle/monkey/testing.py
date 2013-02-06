@@ -40,7 +40,23 @@ class RedturtleMonkey(PloneSandboxLayer):
                     u'default_from_name': u'info@acme.com',
                 },
             ]})
-
+        # Templates
+        mailchimp.templates()
+        mocker.count(0, 1000)
+        mocker.result([{ u'id': 1,
+                         u'name': u'My template',
+                         u'layout': u'basic',
+                         u'preview_image': u'http://nohost/preview.jpg',
+                         u'date_created': u'2013/01/01',
+                         u'edit_source': True,
+                       },
+                       { u'id': 2,
+                         u'name': u'My template 2',
+                         u'layout': u'advanced',
+                         u'preview_image': u'http://nohost/preview.jpg',
+                         u'date_created': u'2012/01/01',
+                         u'edit_source': False}
+            ])
         # Get account details
         mailchimp.getAccountDetails()
         mocker.count(0, 1000)

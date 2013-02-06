@@ -33,6 +33,11 @@ class MonkeyLocatorIntegrationTest(unittest.TestCase):
         self.assertTrue(locator.lists())
         self.assertEqual(len(locator.lists()), 2)
 
+    def test_mailchimp_locator_template_method(self):
+        from redturtle.monkey.locator import MonkeyLocator
+        locator = MonkeyLocator()
+        self.assertTrue(locator.templates())
+        self.assertEqual(len(locator.templates()), 2)
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

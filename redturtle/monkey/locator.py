@@ -36,6 +36,20 @@ class MonkeyLocator(object):
         except:
             raise
 
+    def templates(self):
+        """Return all available MailChimp templates.
+        http://apidocs.mailchimp.com/api/rtfm/templates.func.php
+        """
+        self.connect()
+        try:
+            return self.mailchimp.templates()
+        except MailChimpException:
+            return []
+        except PostRequestError:
+            return []
+        except:
+            raise
+
     def account(self):
         self.connect()
         return self.mailchimp.getAccountDetails()
