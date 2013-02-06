@@ -13,7 +13,26 @@ from redturtle.monkey import  _
 from redturtle.monkey.config import PROJECTNAME
 from redturtle.monkey.interfaces import ICampaign
 
+
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
+
+    atapi.StringField('campaign_list',
+        storage=atapi.AnnotationStorage(),
+        vocabulary_factory='redturtle.monkey.vocabularies.AvailableLists',
+        widget=atapi.SelectionWidget(
+            label=_(u"Campaign list"),
+            description=_(u"Choose existing Mailchimp list"),
+        ),
+    ),
+
+    atapi.StringField('campaign_template',
+        storage=atapi.AnnotationStorage(),
+        vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
+        widget=atapi.SelectionWidget(
+            label=_(u"Campaign template"),
+            description=_(u"Choose existing Mailchimp template"),
+        ),
+    ),
 
     atapi.ReferenceField('campaign_items',
         relationship = 'campaignItems',

@@ -23,5 +23,12 @@
     provides="redturtle.monkey.interfaces.IMonkeyLocator"
     factory=".locator.MonkeyLocator" />
 
+  <!-- Vocabularies -->
+  <utility component=".vocabularies.available_lists"
+           name="redturtle.monkey.vocabularies.AvailableLists"
+           provides="zope.schema.interfaces.IVocabularyFactory" />
+  <utility component=".vocabularies.available_templates"
+           name="redturtle.monkey.vocabularies.AvailableTemplates"
+           provides="zope.schema.interfaces.IVocabularyFactory" />
 
 </configure>

@@ -42,7 +42,7 @@ class MonkeyLocator(object):
         """
         self.connect()
         try:
-            return self.mailchimp.templates()
+            return self.mailchimp.templates()['user']
         except MailChimpException:
             return []
         except PostRequestError:
