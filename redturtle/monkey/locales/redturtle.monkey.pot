@@ -1,0 +1,80 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-02-06 12:19+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: redturtle.monkey\n"
+
+#: ./browser/controlpanel.py:20
+msgid ""
+msgstr ""
+
+#: ./browser/z3cformhelpers.py:21
+msgid "Configure portlet"
+msgstr ""
+
+#: ./interfaces.py:61
+msgid "Email from address"
+msgstr ""
+
+#: ./interfaces.py:68
+msgid "Email from name"
+msgstr ""
+
+#: ./interfaces.py:29
+msgid "Invalid email address"
+msgstr ""
+
+#: ./interfaces.py:48
+msgid "MailChimp API Key"
+msgstr ""
+
+#: ./browser/controlpanel.py:19
+msgid "MailChimp settings"
+msgstr ""
+
+#: ./browser/z3cformhelpers.py:65
+msgid "Modify portlet"
+msgstr ""
+
+#. Default: "Enter in your MailChimp key here (.e.g. '8b785dcabe4b5aa24ef84201ea7dcded-us4'). Log into mailchimp.com, go to account -> extras -> API Keys & Authorized Apps and copy the API Key to this field."
+#: ./interfaces.py:49
+msgid "help_api_key"
+msgstr ""
+
+#. Default: "Please enter FROM email address."
+#: ./interfaces.py:62
+msgid "help_from_email"
+msgstr ""
+
+#. Default: "Please enter FROM email name."
+#: ./interfaces.py:69
+msgid "help_from_name"
+msgstr ""
+
+#. Default: "Cancel"
+#: ./browser/z3cformhelpers.py:50
+msgid "label_cancel"
+msgstr ""
+
+#. Default: "Save"
+#: ./browser/z3cformhelpers.py:39
+msgid "label_save"
+msgstr ""
+
+#: ./profiles/default/controlpanel.xml
+msgid "monkey"
+msgstr ""
+

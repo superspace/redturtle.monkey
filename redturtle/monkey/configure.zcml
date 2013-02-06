@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="redturtle.monkey">
+
+  <include package=".browser" />
+  <i18n:registerTranslations directory="locales" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Redturtle Monkey"
+      directory="profiles/default"
+      description="MailChimp integration for Plone."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <!-- MailChimp Locator -->
+  <utility
+    provides="redturtle.monkey.interfaces.IMonkeyLocator"
+    factory=".locator.MonkeyLocator" />
+
+
+</configure>

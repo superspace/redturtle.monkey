@@ -1,0 +1,23 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="redturtle.monkey">
+
+  <!-- Control panel -->
+  <include package="plone.app.registry" />
+  <browser:page
+    name="monkey-settings"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.MonkeySettingsControlPanel"
+    permission="cmf.ManagePortal"
+    />
+
+  <!-- Resource directory for images -->
+  <browser:resourceDirectory
+    name="redturtle.monkey.images"
+    directory="images"
+    layer="..interfaces.IRedturtleMonkey"
+    />
+
+</configure>
