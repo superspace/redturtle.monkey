@@ -7,6 +7,13 @@
 
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
+
+  <permission
+        id="redturtle.monkey.create_campaign"
+        title="redturtle.monkey: Add Campaign"
+    />
+
+
   <include package=".browser" />
   <include package=".content" />
 

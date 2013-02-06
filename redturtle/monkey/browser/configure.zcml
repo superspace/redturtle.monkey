@@ -4,6 +4,21 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="redturtle.monkey">
 
+
+  <browser:page
+    name="create_campaign"
+    for="..interfaces.ICampaign"
+    class=".campaign.CreateCampaign"
+    permission="redturtle.monkey.create_campaign"
+    />
+
+  <browser:page
+    name="can_create_campaign"
+    for="*"
+    class=".campaign.CanCreateCampaign"
+    permission="zope2.View"
+    />
+
   <!-- Control panel -->
   <include package="plone.app.registry" />
   <browser:page

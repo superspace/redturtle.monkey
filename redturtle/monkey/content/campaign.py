@@ -16,8 +16,17 @@ from redturtle.monkey.interfaces import ICampaign
 
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
+    atapi.StringField('campaign_subject',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.StringWidget(
+            label=_(u"Subject"),
+            description=_(u"Campaign subject"),
+        ),
+    ),
+
     atapi.StringField('campaign_list',
         storage=atapi.AnnotationStorage(),
+        required=True,
         vocabulary_factory='redturtle.monkey.vocabularies.AvailableLists',
         widget=atapi.SelectionWidget(
             label=_(u"Campaign list"),
@@ -26,6 +35,7 @@ CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
     ),
 
     atapi.StringField('campaign_template',
+        required=True,
         storage=atapi.AnnotationStorage(),
         vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
         widget=atapi.SelectionWidget(
