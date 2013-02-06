@@ -25,6 +25,11 @@ class IMonkeyLocator(Interface):
     """
 
 
+class ICampaign(Interface):
+    """
+    """
+
+
 class NotAnEmailAddress(schema.ValidationError):
     __doc__ = _(u"Invalid email address")
 

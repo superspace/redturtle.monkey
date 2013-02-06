@@ -5,8 +5,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="redturtle.monkey">
 
-  <include package=".browser" />
+  <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
+  <include package=".browser" />
+  <include package=".content" />
 
   <genericsetup:registerProfile
       name="default"
