@@ -13,6 +13,13 @@
     />
 
   <browser:page
+    name="campaign_created"
+    for="..interfaces.ICampaign"
+    permission="redturtle.monkey.create_campaign"
+    template="campaign_created.pt"
+    />
+
+  <browser:page
     name="can_create_campaign"
     for="*"
     class=".campaign.CanCreateCampaign"

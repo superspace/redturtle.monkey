@@ -54,7 +54,7 @@ class MonkeyLocator(object):
         self.connect()
         return self.mailchimp.getAccountDetails()
 
-    def createCampaign(self, title, subject, list_id, template_id):
+    def createCampaign(self, title, subject, list_id, template_id, content):
         self.connect()
         options = {'subject': subject,
                    'list_id': list_id,
@@ -62,10 +62,6 @@ class MonkeyLocator(object):
                    'title': title,
                    'from_email': self.settings.from_email,
                    'from_name': self.settings.from_name}
-        content = {'html_main':'<h1>Main message</h1>',
-                   'html_month': 'May',
-                   'html_day': '18',
-                   'text':'text text text *|UNSUB|*'}
         try:
             cid = self.mailchimp.campaignCreate(type='regular', options=options, content=content)
             campaign = self.mailchimp.campaigns(filters={'campaign_id':cid})
