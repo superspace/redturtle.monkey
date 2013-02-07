@@ -18,5 +18,5 @@ class TestMonkeyVocabularies(unittest.TestCase):
         vfactory = getUtility(IVocabularyFactory,
                       name='redturtle.monkey.vocabularies.AvailableTemplates')
         vocab = vfactory(self.portal)
-        self.assertTrue(u'<img src="http://nohost/preview.jpg"/>' in \
+        self.assertTrue(u'<img src="http://nohost/preview.jpg" title="My template"/>' in \
                                                      [a.title for a in vocab])
