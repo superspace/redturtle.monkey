@@ -43,7 +43,8 @@ class RedturtleMonkey(PloneSandboxLayer):
         # Templates
         mailchimp.templates()
         mocker.count(0, 1000)
-        mocker.result([{ u'id': 1,
+        mocker.result({'user':
+                      [{ u'id': 1,
                          u'name': u'My template',
                          u'layout': u'basic',
                          u'preview_image': u'http://nohost/preview.jpg',
@@ -56,7 +57,8 @@ class RedturtleMonkey(PloneSandboxLayer):
                          u'preview_image': u'http://nohost/preview.jpg',
                          u'date_created': u'2012/01/01',
                          u'edit_source': False}
-            ])
+                      ]
+        })
         # Get account details
         mailchimp.getAccountDetails()
         mocker.count(0, 1000)

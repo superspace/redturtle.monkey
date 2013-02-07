@@ -14,6 +14,15 @@ from redturtle.monkey.config import PROJECTNAME
 from redturtle.monkey.interfaces import ICampaign
 
 
+class ImageRadioWidget(atapi.SelectionWidget):
+    _properties = atapi.SelectionWidget._properties.copy()
+    _properties.update({
+        'format': "radio",
+        'macro': "imageradio",
+        'blurrable': True,
+        })
+
+
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
     atapi.StringField('campaign_subject',
@@ -38,7 +47,7 @@ CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
         required=True,
         storage=atapi.AnnotationStorage(),
         vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
-        widget=atapi.SelectionWidget(
+        widget=ImageRadioWidget(
             label=_(u"Campaign template"),
             description=_(u"Choose existing Mailchimp template"),
         ),

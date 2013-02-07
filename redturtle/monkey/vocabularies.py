@@ -21,5 +21,6 @@ def available_templates(context):
     if not templates:
         return SimpleVocabulary([])
     return SimpleVocabulary([
-        SimpleTerm(value=str(li['id']), title=li['name']) for li in templates]
+        SimpleTerm(value=str(li['id']), title='<img src="%s" title="%s"/>' % \
+                      (li['preview_image'], li['name'])) for li in templates]
     )
