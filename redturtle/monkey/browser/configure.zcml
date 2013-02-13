@@ -41,5 +41,11 @@
     directory="images"
     layer="..interfaces.IRedturtleMonkey"
     />
+  <!-- Resource directory for js/css -->
+  <browser:resourceDirectory
+    name="redturtle.monkey.resources"
+    directory="resources"
+    layer="..interfaces.IRedturtleMonkey"
+    />
 
 </configure>

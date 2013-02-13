@@ -2,9 +2,9 @@
 <object name="Campaign"
    meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="redturtle.monkey" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">Campaign</property>
+  <property name="title" i18n:translate="">Campaign Configuration</property>
   <property name="description"
-    i18n:translate="">RedTurtle monkey campaign</property>
+    i18n:translate="">RedTurtle monkey campaign configuration</property>
   <property name="content_meta_type">Campaign</property>
   <property name="content_icon">++resource++redturtle.monkey.images/campaign.png</property>
   <property name="product">redturtle.monkey</property>
