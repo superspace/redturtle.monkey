@@ -1,13 +1,13 @@
 import random
 from zExceptions import Redirect
 from zope.component import getUtility
+from zope.component import subscribers
 from zope.schema.interfaces import IVocabularyFactory
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 
-from redturtle.monkey.interfaces import IMonkeyLocator
+from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 from redturtle.monkey import  _
-#from redturtle.monkey.interfaces import ICampaign
 
 
 class CampaignWizard(BrowserView):
@@ -47,6 +47,17 @@ class CampaignWizard(BrowserView):
                                    (self.context.absolute_url(), campaign_id))
 
     def generateCampaignContent(self):
+        content = {}
+        for item in self.context.getCampaign_items():
+            slots = subscribers([item], IMailchimpSlot)
+            for slot in slots:
+                slot_name = 'html_%s' % slot.name
+                if slot_name not in content:
+                    content[slot_name] = ''
+                content[slot_name] += slot.render(self.request)
+        return content
+
+    def old_generateCampaignContent(self):
         content = {'html_std_content01':'',
                    'html_std_content02':'',
                    'html_std_content00':''}

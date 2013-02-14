@@ -21,13 +21,11 @@ class IRedturtleMonkey(Interface):
 
 
 class IMonkeyLocator(Interface):
-    """
-    """
+    """Interface for mailchimp locator."""
 
 
 class ICampaign(Interface):
-    """
-    """
+    """Marker interface for AT Campaign."""
 
 
 class NotAnEmailAddress(schema.ValidationError):
@@ -86,3 +84,21 @@ class IMonkeySettings(Interface):
             raise Invalid(
                 u"Your MailChimp API key is not valid. Please go " +
                 u"to mailchimp.com and check your API key.")
+
+
+class IMailchimpSlot(Interface):
+    """A mapping between mailchimp slot and Plone content rendering."""
+
+    name = schema.TextLine(
+        title=_(u"Mailchimp slot name"),
+        required=True)
+
+    def render():
+        """Calls IMailchimpSlotRenderer to generate HTML for slot"""
+
+
+class IMailchimpSlotRenderer(Interface):
+    """Returns the rendered HTML for this slot"""
+
+    def render():
+        """Returns the rendered HTML for this slot"""

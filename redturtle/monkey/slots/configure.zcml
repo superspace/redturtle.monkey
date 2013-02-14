@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="redturtle.monkey">
+
+  <!-- header -->
+  <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Header" />
+  <adapter for="* *" factory=".generic.HeaderRenderer" name="header"/>
+
+ <!-- main content -->
+  <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Body" />
+  <adapter for="* *" factory=".generic.BodyRenderer" name="body"/>
+
+</configure>
