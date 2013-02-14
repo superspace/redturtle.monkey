@@ -56,7 +56,14 @@ class CampaignWizard(BrowserView):
         list_id = form.get('list')
         template_id = form.get('template')
         title = form.get('campaign_title')
+
         content = self.generateCampaignContent(form.get('items'))
+        if not content:
+            IStatusMessage(self.request).add(_(u'Couldn\'t generate campaign items.'))
+            raise Redirect,\
+                self.request.response.redirect('%s/campaign_wizard' % \
+                                                  self.context.absolute_url())
+
         campaign_id = mailchimp.createCampaign(subject=subject,
                                                list_id=list_id,
                                                title=title,

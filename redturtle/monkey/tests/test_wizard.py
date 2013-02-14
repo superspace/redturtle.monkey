@@ -36,8 +36,8 @@ class TestMonkeyWizard(unittest.TestCase):
         view = getMultiAdapter((self.campaign, self.request),
                                name="campaign_wizard")
 
-        # without proper form we should get KeyErrors:
-        self.assertRaises(KeyError, view.generateCampaign)
+        # without proper form we should be redirected, too:
+        self.assertRaises(Redirect, view.generateCampaign)
 
         self.request.form['campaign_title'] = 'Title'
         self.request.form['list'] = 'List id'
