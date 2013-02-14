@@ -12,10 +12,14 @@ class Slot(object):
     def __init__(self, context):
         self.context = context
 
-    def render(self, request):
-        view = getMultiAdapter((self.context, request), IMailchimpSlotRenderer,
-                               name=self.name)
-        return view()
+    def render(self, request, items):
+        result = []
+        for item in items:
+            view = getMultiAdapter((item, request),
+                                    IMailchimpSlotRenderer,
+                                    name=self.name)
+            result.append(view())
+        return '\n'.join(result)
 
 
 class SlotRenderer(object):

@@ -25,3 +25,9 @@ class TestMonkeyVocabularies(unittest.TestCase):
                       name='redturtle.monkey.vocabularies.AvailableLists')
         vocab = vfactory(self.portal)
         self.assertTrue(u'ACME Newsletter' in [a.title for a in vocab])
+
+    def test_slots_vocabs(self):
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableSlots')
+        vocab = vfactory(self.portal)
+        self.assertTrue(u'body' in [a.title for a in vocab])

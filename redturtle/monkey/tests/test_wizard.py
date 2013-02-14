@@ -60,7 +60,7 @@ class TestMonkeyWizard(unittest.TestCase):
                                name="campaign_wizard")
 
         # First the campaign is empty
-        self.assertEqual(view.generateCampaignContent(), {})
+        self.assertEqual(view.generateCampaignContent([]), {})
 
         # Let's add related items
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -68,14 +68,19 @@ class TestMonkeyWizard(unittest.TestCase):
         self.folder.e1.setTitle(u'Event 1')
         self.folder.invokeFactory(type_name='Event', id='e2')
         self.folder.e2.setTitle(u'Event 2')
-        self.campaign.setCampaign_items([IUUID(self.folder.e1),
-                                         IUUID(self.folder.e2)])
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
-        content = view.generateCampaignContent()
+        items = [{'slot': 'header',
+                  'uid': IUUID(self.folder.e2),
+                  'enabled': True},
+                 {'slot': 'body',
+                  'uid': IUUID(self.folder.e1),
+                  'enabled': True}]
+
+        content = view.generateCampaignContent(items)
         self.assertTrue('html_body' in content)
         self.assertTrue('html_header' in content)
 
         # Finally let's check the HTML
-        self.assertTrue('<h1>Event 1</h1>' in content['html_header'])
-        self.assertTrue('<h2>Event 2</h2>' in content['html_body'])
+        self.assertTrue('<h1>Event 2</h1>' in content['html_header'])
+        self.assertTrue('<h2>Event 1</h2>' in content['html_body'])

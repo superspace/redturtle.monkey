@@ -1,10 +1,11 @@
-import random
 from zExceptions import Redirect
 from zope.component import getUtility
 from zope.component import subscribers
 from zope.schema.interfaces import IVocabularyFactory
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
+from plone.uuid.interfaces import IUUID
+from plone.app.uuid.utils import uuidToObject
 
 from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 from redturtle.monkey import  _
@@ -12,30 +13,50 @@ from redturtle.monkey import  _
 
 class CampaignWizard(BrowserView):
 
-    def list_templates(self):
-        vfactory = getUtility(IVocabularyFactory,
-                      name='redturtle.monkey.vocabularies.AvailableTemplates')
-        return vfactory(self.context)
-
-    def list_clists(self):
-        vfactory = getUtility(IVocabularyFactory,
-                      name='redturtle.monkey.vocabularies.AvailableLists')
-        return vfactory(self.context)
-
     def __call__(self):
+        """Redirect POST requests to generateCampaign."""
         if self.request.method == 'POST':
             return self.generateCampaign()
         else:
             return super(CampaignWizard, self).__call__()
 
+    def list_templates(self):
+        """List all available mailchimp templates."""
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableTemplates')
+        return vfactory(self.context)
+
+    def list_clists(self):
+        """List all available mailchimp lists."""
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableLists')
+        return vfactory(self.context)
+
+    def list_slots(self):
+        """List all avaible IMailchimpSlot subscribers for given context."""
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableSlots')
+        return vfactory(self.context)
+
+    def list_campaign_items(self):
+        """List all campaign items group by folderish/nonfolderish types."""
+        items = self.context.getCampaign_items()
+        result = []
+        for item in items:
+            result.append({'uid': IUUID(item),
+                           'title': item.title_or_id()})
+        return result
+
     def generateCampaign(self):
+        """By calling mailchimp API creates a campaign and redirects
+        user to the proper URL."""
         mailchimp = getUtility(IMonkeyLocator)
         form = self.request.form
-        subject = form['campaign_title']
-        list_id = form['list']
-        template_id = form['template']
-        title = form['campaign_title']
-        content = self.generateCampaignContent()
+        subject = form.get('campaign_title')
+        list_id = form.get('list')
+        template_id = form.get('template')
+        title = form.get('campaign_title')
+        content = self.generateCampaignContent(form.get('items'))
         campaign_id = mailchimp.createCampaign(subject=subject,
                                                list_id=list_id,
                                                title=title,
@@ -43,27 +64,27 @@ class CampaignWizard(BrowserView):
                                                template_id=template_id)
         if campaign_id:
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
-            raise Redirect, self.request.response.redirect('%s/@@campaign_created?id=%s' % \
-                                   (self.context.absolute_url(), campaign_id))
+            raise Redirect,\
+                self.request.response.redirect('%s/@@campaign_created?id=%s' % \
+                            (self.context.absolute_url(), campaign_id))
 
-    def generateCampaignContent(self):
+    def generateCampaignContent(self, items):
+        """Tries to render the html content for the campaign items,
+        using the slot subscribers."""
         content = {}
-        for item in self.context.getCampaign_items():
-            slots = subscribers([item], IMailchimpSlot)
-            for slot in slots:
-                slot_name = 'html_%s' % slot.name
-                if slot_name not in content:
-                    content[slot_name] = ''
-                content[slot_name] += slot.render(self.request)
-        return content
+        if not items:
+            return content
 
-    def old_generateCampaignContent(self):
-        content = {'html_std_content01':'',
-                   'html_std_content02':'',
-                   'html_std_content00':''}
-        template = "<h3>%s</h3><p>%s</p><a href='%s'>Read more...</a>"
-        sections = content.keys()
-        for item in self.context.getCampaign_items():
-            section = random.choice(sections)
-            content[section] += template % (item.title_or_id(), item.Description(), item.absolute_url())
+        items_in_slots = {}
+        for item in items:
+            if item['slot'] not in items_in_slots:
+                items_in_slots[item['slot']] = []
+            items_in_slots[item['slot']].append(uuidToObject(item['uid']))
+
+        slots = subscribers([self.context], IMailchimpSlot)
+        for slot in slots:
+            html = slot.render(self.request, items_in_slots.get(slot.name, []))
+            if not html: # Let's skip empty slots
+                continue
+            content['html_%s' % slot.name] = html
         return content

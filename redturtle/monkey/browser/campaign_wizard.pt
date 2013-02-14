@@ -55,7 +55,35 @@ function validateSteps(step){
     </ul>
     <div id="step-1"> 
       <h2 class="StepTitle" i18n:translate="">Campaign items</h2>
-      Here we need to have a list of all items
+      <div id="content">
+        <table class="listing nosort" id="rulesetMappingsTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Slot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:repeat="item view/list_campaign_items">
+              <td>
+                <div class="field">
+                  <input type="hidden" name="items.uid:records" 
+                         value="" tal:attributes="value item/uid">
+                  <input type="checkbox" value="1" name="items.enabled:records:boolean">
+                  <label for="enabled" tal:content="item/title"></label>
+                </div>
+              </td>
+              <td>
+                <select name="items.slot:records" size="1">
+                  <tal:slots repeat="slot view/list_slots">
+                      <option value="" tal:attributes="value slot/value" tal:content="slot/title"></option>
+                  </tal:slots>
+                </select>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div id="step-2">
       <h2 class="StepTitle" i18n:translate="">Campaign details</h2>

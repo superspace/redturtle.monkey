@@ -39,5 +39,8 @@
   <utility component=".vocabularies.available_templates"
            name="redturtle.monkey.vocabularies.AvailableTemplates"
            provides="zope.schema.interfaces.IVocabularyFactory" />
+  <utility component=".vocabularies.available_slots"
+           name="redturtle.monkey.vocabularies.AvailableSlots"
+           provides="zope.schema.interfaces.IVocabularyFactory" />
 
 </configure>
