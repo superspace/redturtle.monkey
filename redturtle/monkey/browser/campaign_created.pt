@@ -12,8 +12,7 @@
     <metal:body_macro metal:define-macro="body">
     <h3 i18n:translate="">Mailchimp campaign created!</h3>
     <a target="blank_" href="" tal:attributes="href string:https://us6.admin.mailchimp.com/campaigns/wizard/confirm?id=${request/form/id}">
-      <h3>Go to Mailchimp:</h3>
-      <metal:field use-macro="python:context.widget('campaign_template',mode='view')"></metal:field>
+      Go to Mailchimp
     </a>
     </metal:body_macro>
     </metal:content-core>

@@ -73,7 +73,6 @@ class TestMonkeyWizard(unittest.TestCase):
         else:
             self.fail('Redirect not thrown')
 
-
     def test_monkey_wizard_view_protected(self):
         from AccessControl import Unauthorized
         logout()
@@ -112,3 +111,45 @@ class TestMonkeyWizard(unittest.TestCase):
         # Finally let's check the HTML
         self.assertTrue('<h1>Event 2</h1>' in content['html_header'])
         self.assertTrue('<h2>Event 1</h2>' in content['html_body'])
+
+    def test_monkey_wizard_list_campaign_items(self):
+        view = getMultiAdapter((self.campaign, self.request),
+                               name="campaign_wizard")
+
+        # First the campaign is empty
+        self.assertEqual(view.list_campaign_items(), {u'manual_items': []})
+
+        # Let's add related items
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.folder.invokeFactory(type_name='Event', id='e1')
+        self.folder.e1.setTitle(u'Event 1')
+        self.folder.invokeFactory(type_name='Event', id='e2')
+        self.folder.e2.setTitle(u'Event 2')
+        self.campaign.setCampaign_items([IUUID(self.folder.e1),
+                                         IUUID(self.folder.e2)])
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+
+        # Now we should have those two event's in manual_items slot
+        self.assertEqual(len(view.list_campaign_items()['manual_items']), 2)
+
+        # Finally let's check the topic handling
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.folder.invokeFactory(type_name='Collection', id='collection')
+        self.collection = self.folder.collection
+        self.collection.setTitle(u'My collection')
+        query = [{
+            'i': 'Type',
+            'o': 'plone.app.querystring.operation.string.is',
+            'v': 'Event',
+        }]
+        self.collection.setQuery(query)
+        self.campaign.setCampaign_items([IUUID(self.collection),
+                                         IUUID(self.folder.e1),
+                                         IUUID(self.folder.e2)])
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+
+        # Now we should have those two sections:
+        items = view.list_campaign_items()
+        self.assertEqual(len(items.keys()), 2)
+        self.assertEqual(len(items[u'My collection']), 2)
+        self.assertEqual(len(items['manual_items']), 2)

@@ -152,13 +152,13 @@
 .swMain ul.anchor li a.done { 
   position:relative;
   color:#FFF;  
-  background: #8CC63F;  
-  border: 1px solid #8CC63F;   
+  background: #75AD0A;  
+  border: 1px solid #75AD0A;   
   z-index:99;
 }
 .swMain ul.anchor li a.done:hover {
   color:#5A5655;  
-  background: #8CC63F; 
+  background: #75AD0A; 
   border: 1px solid #5A5655;   
 }
 .swMain ul.anchor li a.disabled {

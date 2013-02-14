@@ -2,10 +2,12 @@ from zExceptions import Redirect
 from zope.component import getUtility
 from zope.component import subscribers
 from zope.schema.interfaces import IVocabularyFactory
+from plone.app.collection.interfaces import ICollection
+from plone.app.uuid.utils import uuidToObject
+from plone.uuid.interfaces import IUUID
+from plone.app.contentlisting.interfaces import IContentListingObject
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
-from plone.uuid.interfaces import IUUID
-from plone.app.uuid.utils import uuidToObject
 
 from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 from redturtle.monkey import  _
@@ -41,10 +43,23 @@ class CampaignWizard(BrowserView):
     def list_campaign_items(self):
         """List all campaign items group by folderish/nonfolderish types."""
         items = self.context.getCampaign_items()
-        result = []
-        for item in items:
-            result.append({'uid': IUUID(item),
-                           'title': item.title_or_id()})
+        result = {u'manual_items':[]}
+
+        def walk(items, result, parent):
+            for item in items:
+                if IContentListingObject.providedBy(item):
+                    item = item.getObject()
+                if ICollection.providedBy(item):
+                    collection = item.getQuery()
+                    if collection:
+                        result[item.title_or_id()] = []
+                        walk(collection, result, item.title_or_id())
+                else:
+                    result[parent].append({'uid': IUUID(item),
+                                           'title': item.title_or_id()})
+            return result
+
+        result = walk(items, result, u'manual_items')
         return result
 
     def generateCampaign(self):
@@ -84,7 +99,7 @@ class CampaignWizard(BrowserView):
 
         items_in_slots = {}
         for item in items:
-            if not item['enabled']:
+            if not item.get('enabled'):
                 continue
             if item['slot'] not in items_in_slots:
                 items_in_slots[item['slot']] = []
