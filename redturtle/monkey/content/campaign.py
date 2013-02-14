@@ -25,23 +25,23 @@ class ImageRadioWidget(atapi.SelectionWidget):
 
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
-    atapi.StringField('campaign_subject',
-        storage=atapi.AnnotationStorage(),
-        widget=atapi.StringWidget(
-            label=_(u"Subject"),
-            description=_(u"Campaign subject"),
-        ),
-    ),
+#    atapi.StringField('campaign_subject',
+#        storage=atapi.AnnotationStorage(),
+#        widget=atapi.StringWidget(
+#            label=_(u"Subject"),
+#            description=_(u"Campaign subject"),
+#        ),
+#    ),
 
-    atapi.StringField('campaign_list',
-        storage=atapi.AnnotationStorage(),
-        required=True,
-        vocabulary_factory='redturtle.monkey.vocabularies.AvailableLists',
-        widget=atapi.SelectionWidget(
-            label=_(u"Campaign list"),
-            description=_(u"Choose existing Mailchimp list"),
-        ),
-    ),
+#    atapi.StringField('campaign_list',
+#        storage=atapi.AnnotationStorage(),
+#        required=True,
+#        vocabulary_factory='redturtle.monkey.vocabularies.AvailableLists',
+#        widget=atapi.SelectionWidget(
+#            label=_(u"Campaign list"),
+#            description=_(u"Choose existing Mailchimp list"),
+#        ),
+#    ),
 
     atapi.StringField('campaign_template',
         required=True,

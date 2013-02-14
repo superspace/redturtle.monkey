@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="redturtle.monkey">
+  <body>
+    <metal:content-core fill-slot="body">
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('#wizard').smartWizard(
+            {
+                transitionEffect:'slideleft',
+                onLeaveStep:leaveAStepCallback,
+                onFinish:onFinishCallback,
+                enableFinishButton:false,
+                labelFinish:'Send'
+                }
+          );
+          function leaveAStepCallback(obj){
+          var step_num= obj.attr('rel');
+          return validateSteps(step_num);
+          }
+          function onFinishCallback(){
+          $('form').submit();
+          }
+          });
+
+function validateSteps(step){
+  return true
+}
+
+</script>
+
+<form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard">
+  <!-- Tabs -->
+  <div id="wizard" class="swMain">
+    <ul>
+      <li><a href="#step-1">
+        <label class="stepNumber">1</label>
+        <span class="stepDesc">
+          <span tal:omit-tag="" i18n:translate="">Campaign items</span><br />
+          <small i18n:translate="">Choose items for mailchimp</small>
+        </span>
+      </a></li>
+      <li><a href="#step-2">
+        <label class="stepNumber">2</label>
+        <span class="stepDesc">
+          <span tal:omit-tag="" i18n:translate="">Campaign details</span><br />
+          <small i18n:translate="">Fill in campaign details</small>
+        </span>
+      </a></li>
+    </ul>
+    <div id="step-1"> 
+      <h2 class="StepTitle" i18n:translate="">Campaign items</h2>
+      Here we need to have a list of all items
+    </div>
+    <div id="step-2">
+      <h2 class="StepTitle" i18n:translate="">Campaign details</h2>
+      <div id="content">
+        <div class="field">
+          <label for="campaign_title" i18n:translate="">
+            Campaign title
+            <span class="fieldRequired" title="Required">
+              (Required)
+            </span>
+            <span class="formHelp" i18n:translate="">This title will be used as a campaign title as well as campaign subject.</span>
+          </label>
+          <div class="widget"><input class="textType" id="form.campaign_title" name="campaign_title" size="40" type="text" value="" tal:attributes="value context/title_or_id"></div>
+        </div>
+        <div class="field">
+          <label for="campaign_description" i18n:translate="">
+            Campaign description
+            <span class="fieldRequired" title="Required">
+              (Required)
+            </span>
+            <span class="formHelp" i18n:translate="">This field will be used as a campaign content.</span>
+          </label>
+          <div class="widget"><input class="textType" id="form.campaign_description" name="campaign_description" size="40" type="text" value="" tal:attributes="value context/Description"></div>
+        </div>
+        <div class="field">
+          <label for="template">
+            Campaign template
+            <span class="fieldRequired" title="Required">
+              (Required)
+            </span>
+            <span class="formHelp">Select the template that will be used for this campaign.</span>
+          </label>
+          <div class="widget">
+            <div class="value">
+              <select id="form.template" name="template" size="1">
+                <tal:templates repeat="template view/list_templates">
+                    <option value="" tal:attributes="value template/value" tal:content="template/title"></option>
+                </tal:templates>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="list">
+            Recipient list
+            <span class="fieldRequired" title="Required">
+              (Required)
+            </span>
+            <span class="formHelp">Select the recipient list.</span>
+          </label>
+          <div class="widget">
+            <div class="value">
+              <select id="form.list" name="list" size="1">
+                <tal:templates repeat="clist view/list_clists">
+                    <option value="" tal:attributes="value clist/value" tal:content="clist/title"></option>
+                </tal:templates>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End SmartWizard Content -->      
+</form> 
+</metal:content-core>
+</body>
+</html>

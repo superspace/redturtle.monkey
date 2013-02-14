@@ -1,22 +1,40 @@
 import random
 from zExceptions import Redirect
 from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 
 from redturtle.monkey.interfaces import IMonkeyLocator
-from redturtle.monkey.interfaces import ICampaign
-#from redturtle.monkey import  _
+from redturtle.monkey import  _
+#from redturtle.monkey.interfaces import ICampaign
 
 
-class CreateCampaign(BrowserView):
+class CampaignWizard(BrowserView):
+
+    def list_templates(self):
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableTemplates')
+        return vfactory(self.context)
+
+    def list_clists(self):
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableLists')
+        return vfactory(self.context)
 
     def __call__(self):
+        if self.request.method == 'POST':
+            return self.generateCampaign()
+        else:
+            return super(CampaignWizard, self).__call__()
+
+    def generateCampaign(self):
         mailchimp = getUtility(IMonkeyLocator)
-        subject = self.context.getCampaign_subject()
-        list_id = self.context.getCampaign_list()
-        template_id = self.context.getCampaign_template()
-        title = self.context.title_or_id()
+        form = self.request.form
+        subject = form['campaign_title']
+        list_id = form['list']
+        template_id = form['template']
+        title = form['campaign_title']
         content = self.generateCampaignContent()
         campaign_id = mailchimp.createCampaign(subject=subject,
                                                list_id=list_id,
@@ -24,7 +42,7 @@ class CreateCampaign(BrowserView):
                                                content=content,
                                                template_id=template_id)
         if campaign_id:
-            IStatusMessage(self.request).add('Mailchimp campaign created.')
+            IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
             raise Redirect, self.request.response.redirect('%s/@@campaign_created?id=%s' % \
                                    (self.context.absolute_url(), campaign_id))
 
@@ -38,10 +56,3 @@ class CreateCampaign(BrowserView):
             section = random.choice(sections)
             content[section] += template % (item.title_or_id(), item.Description(), item.absolute_url())
         return content
-
-class CanCreateCampaign(BrowserView):
-    def __call__(self):
-        if ICampaign.providedBy(self.context):
-            return True
-        else:
-            return False
