@@ -84,6 +84,8 @@ class CampaignWizard(BrowserView):
 
         items_in_slots = {}
         for item in items:
+            if not item['enabled']:
+                continue
             if item['slot'] not in items_in_slots:
                 items_in_slots[item['slot']] = []
             items_in_slots[item['slot']].append(uuidToObject(item['uid']))

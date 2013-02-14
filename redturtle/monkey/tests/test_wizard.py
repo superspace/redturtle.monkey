@@ -37,14 +37,42 @@ class TestMonkeyWizard(unittest.TestCase):
                                name="campaign_wizard")
 
         # without proper form we should be redirected, too:
-        self.assertRaises(Redirect, view.generateCampaign)
+        try:
+            view.generateCampaign()
+        except Redirect, e:
+            self.assertEqual(e.message, 'http://nohost/plone/f1/c1/campaign_wizard')
+        except Exception, e:
+            self.fail('Unexpected exception thrown:', e)
+        else:
+            self.fail('Redirect not thrown')
+
+        # Let's add related items
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.folder.invokeFactory(type_name='Event', id='e1')
+        self.folder.e1.setTitle(u'Event 1')
+        self.folder.invokeFactory(type_name='Event', id='e2')
+        self.folder.e2.setTitle(u'Event 2')
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
 
         self.request.form['campaign_title'] = 'Title'
         self.request.form['list'] = 'List id'
         self.request.form['template'] = 'Template id'
-
+        self.request.form['items'] = [{'slot': 'header',
+                                       'uid': IUUID(self.folder.e2),
+                                       'enabled': True},
+                                      {'slot': 'body',
+                                       'uid': IUUID(self.folder.e1),
+                                       'enabled': True}]
         # now we should get a proper Redirect
-        self.assertRaises(Redirect, view.generateCampaign)
+        try:
+            view.generateCampaign()
+        except Redirect, e:
+            self.assertEqual(e.message, 'http://nohost/plone/f1/c1/@@campaign_created?id=123QWE456')
+        except Exception, e:
+            self.fail('Unexpected exception thrown:', e)
+        else:
+            self.fail('Redirect not thrown')
+
 
     def test_monkey_wizard_view_protected(self):
         from AccessControl import Unauthorized
