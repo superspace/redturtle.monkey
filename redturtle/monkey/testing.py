@@ -1,11 +1,11 @@
 from zope.component import getUtility
-from zope.configuration import xmlconfig
 from plone.registry.interfaces import IRegistry
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
+from plone.testing import z2
 
 from redturtle.monkey.interfaces import IMonkeySettings
 
@@ -17,7 +17,7 @@ class RedturtleMonkey(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         from mocker import Mocker
         from mocker import ANY
-        #from mocker import KWARGS
+        from mocker import KWARGS
         mocker = Mocker()
         postmonkey = mocker.replace("postmonkey")
         mailchimp = postmonkey.PostMonkey(ANY)
@@ -59,6 +59,13 @@ class RedturtleMonkey(PloneSandboxLayer):
                          u'edit_source': False}
                       ]
         })
+        # Campaigns
+        mailchimp.campaignCreate(KWARGS)
+        mocker.count(0, 1000)
+        mocker.result(123)
+        mailchimp.campaigns(KWARGS)
+        mocker.count(0, 1000)
+        mocker.result({'data':[{'web_id': '123QWE456'}]})
         # Get account details
         mailchimp.getAccountDetails()
         mocker.count(0, 1000)
@@ -106,9 +113,8 @@ class RedturtleMonkey(PloneSandboxLayer):
 
         # Load ZCML
         import redturtle.monkey
-        xmlconfig.file('configure.zcml',
-                       redturtle.monkey,
-                       context=configurationContext)
+        self.loadZCML(package=redturtle.monkey)
+        z2.installProduct(app, 'redturtle.monkey')
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'redturtle.monkey:default')
@@ -116,6 +122,11 @@ class RedturtleMonkey(PloneSandboxLayer):
         registry = getUtility(IRegistry)
         mailchimp_settings = registry.forInterface(IMonkeySettings)
         mailchimp_settings.api_key = u"abc"
+
+    def tearDownZope(self, app):
+        # Uninstall product
+        z2.uninstallProduct(app, 'redturtle.monkey')
+
 
 REDTURTLE_MONKEY_FIXTURE = RedturtleMonkey()
 REDTURTLE_MONKEY_INTEGRATION_TESTING = IntegrationTesting(

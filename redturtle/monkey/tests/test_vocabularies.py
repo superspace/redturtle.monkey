@@ -18,5 +18,10 @@ class TestMonkeyVocabularies(unittest.TestCase):
         vfactory = getUtility(IVocabularyFactory,
                       name='redturtle.monkey.vocabularies.AvailableTemplates')
         vocab = vfactory(self.portal)
-        self.assertTrue(u'<img src="http://nohost/preview.jpg" title="My template"/>' in \
-                                                     [a.title for a in vocab])
+        self.assertTrue(u'My template' in [a.title for a in vocab])
+
+    def test_list_vocabs(self):
+        vfactory = getUtility(IVocabularyFactory,
+                      name='redturtle.monkey.vocabularies.AvailableLists')
+        vocab = vfactory(self.portal)
+        self.assertTrue(u'ACME Newsletter' in [a.title for a in vocab])

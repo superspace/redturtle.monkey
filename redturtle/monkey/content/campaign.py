@@ -43,15 +43,15 @@ CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 #        ),
 #    ),
 
-    atapi.StringField('campaign_template',
-        required=True,
-        storage=atapi.AnnotationStorage(),
-        vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
-        widget=ImageRadioWidget(
-            label=_(u"Campaign template"),
-            description=_(u"Choose existing Mailchimp template"),
-        ),
-    ),
+#    atapi.StringField('campaign_template',
+#        required=True,
+#        storage=atapi.AnnotationStorage(),
+#        vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
+#        widget=ImageRadioWidget(
+#            label=_(u"Campaign template"),
+#            description=_(u"Choose existing Mailchimp template"),
+#        ),
+#    ),
 
     atapi.ReferenceField('campaign_items',
         relationship = 'campaignItems',

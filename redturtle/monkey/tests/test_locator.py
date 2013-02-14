@@ -39,5 +39,12 @@ class MonkeyLocatorIntegrationTest(unittest.TestCase):
         self.assertTrue(locator.templates())
         self.assertEqual(len(locator.templates()), 2)
 
+    def test_mailchimp_locator_create_campaign(self):
+        from redturtle.monkey.locator import MonkeyLocator
+        locator = MonkeyLocator()
+        web_id = locator.createCampaign('Title','Subject','List_id',
+                                        'Template_id','The content')
+        self.assertEqual(web_id, '123QWE456')
+
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
