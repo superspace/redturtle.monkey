@@ -8,7 +8,7 @@ from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 
 def available_lists(context):
     mailchimp = getUtility(IMonkeyLocator)
-    lists = mailchimp.lists()
+    lists = mailchimp.lists(campaign=context)
     if not lists:
         return SimpleVocabulary([])
     return SimpleVocabulary([
@@ -18,7 +18,7 @@ def available_lists(context):
 
 def available_templates(context):
     mailchimp = getUtility(IMonkeyLocator)
-    templates = mailchimp.templates()
+    templates = mailchimp.templates(campaign=context)
     if not templates:
         return SimpleVocabulary([])
     return SimpleVocabulary([

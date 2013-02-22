@@ -1,4 +1,5 @@
 from zExceptions import Redirect
+from postmonkey import MailChimpException
 from zope.component import getUtility
 from zope.component import subscribers
 from zope.schema.interfaces import IVocabularyFactory
@@ -88,18 +89,22 @@ class CampaignWizard(BrowserView):
             raise Redirect,\
                 self.request.response.redirect('%s/campaign_wizard' % \
                                                   self.context.absolute_url())
-
-        campaign_id = mailchimp.createCampaign(subject=subject,
-                                               list_id=list_id,
-                                               title=title,
-                                               content=content,
-                                               template_id=template_id,
-                                               campaign=self.context)
-        if campaign_id:
+        try:
+            campaign_id = mailchimp.createCampaign(subject=subject,
+                                                   list_id=list_id,
+                                                   title=title,
+                                                   content=content,
+                                                   template_id=template_id,
+                                                   campaign=self.context)
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
             raise Redirect,\
                 self.request.response.redirect('%s/@@campaign_created?id=%s' % \
                             (self.context.absolute_url(), campaign_id))
+        except MailChimpException, e:
+            IStatusMessage(self.request).add(e, type='error')
+            raise Redirect,\
+                self.request.response.redirect(self.context.absolute_url())
+
 
     def generateCampaignContent(self, items):
         """Tries to render the html content for the campaign items,

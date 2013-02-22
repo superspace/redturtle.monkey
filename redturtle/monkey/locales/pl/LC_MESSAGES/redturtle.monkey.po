@@ -14,23 +14,79 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/z3cformhelpers.py:21
-msgid "Configure portlet"
+#: ./content/campaign.py:22
+msgid "Campaign API key"
 msgstr ""
 
-#: ./interfaces.py:61
+#: ./profiles/default/types/Campaign.xml
+msgid "Campaign Configuration"
+msgstr ""
+
+#: ./content/campaign.py:30
+msgid "Campaign FROM email"
+msgstr ""
+
+#: ./content/campaign.py:38
+msgid "Campaign FROM name"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:99
+msgid "Campaign description"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:33
+msgid "Campaign details"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:26
+msgid "Campaign items"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:87
+msgid "Campaign title"
+msgstr ""
+
+#: ./profiles/default/types/Campaign.xml
+msgid "Campaign wizard"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:27
+msgid "Choose items for mailchimp"
+msgstr ""
+
+#: ./browser/campaign.py:88
+msgid "Couldn't generate campaign items."
+msgstr ""
+
+#: ./content/campaign.py:23
+msgid "Custom Mailchimp API key for this campaign"
+msgstr ""
+
+#: ./content/campaign.py:31
+msgid "Custom Mailchimp FROM email for this campaign"
+msgstr ""
+
+#: ./content/campaign.py:39
+msgid "Custom Mailchimp FROM name for this campaign"
+msgstr ""
+
+#: ./interfaces.py:64
 msgid "Email from address"
 msgstr ""
 
-#: ./interfaces.py:68
+#: ./interfaces.py:71
 msgid "Email from name"
 msgstr ""
 
-#: ./interfaces.py:29
+#: ./browser/campaign_wizard.pt:34
+msgid "Fill in campaign details"
+msgstr ""
+
+#: ./interfaces.py:32
 msgid "Invalid email address"
 msgstr ""
 
-#: ./interfaces.py:48
+#: ./interfaces.py:51
 msgid "MailChimp API Key"
 msgstr ""
 
@@ -38,36 +94,60 @@ msgstr ""
 msgid "MailChimp settings"
 msgstr ""
 
-#: ./browser/z3cformhelpers.py:65
-msgid "Modify portlet"
+#: ./browser/campaign_created.pt:13
+msgid "Mailchimp campaign created!"
+msgstr ""
+
+#: ./browser/campaign.py:99
+msgid "Mailchimp campaign created."
+msgstr ""
+
+#: ./interfaces.py:93
+msgid "Mailchimp slot name"
+msgstr ""
+
+#: ./profiles/default/controlpanel.xml
+msgid "Monkey"
+msgstr ""
+
+#: ./slots/event_body.pt:6
+#: ./slots/generic_body.pt:4
+msgid "Read more"
+msgstr ""
+
+#: ./profiles/default/types/Campaign.xml
+msgid "RedTurtle monkey campaign configuration"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:105
+msgid "This field will be used as a campaign content."
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:93
+msgid "This title will be used as a campaign title as well as campaign subject."
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:14
+msgid "You cannot start wizard configuration. Your campaign doesn't have any items and/or your mailchimp API configuration is wrong."
 msgstr ""
 
 #. Default: "Enter in your MailChimp key here (.e.g. '8b785dcabe4b5aa24ef84201ea7dcded-us4'). Log into mailchimp.com, go to account -> extras -> API Keys & Authorized Apps and copy the API Key to this field."
-#: ./interfaces.py:49
+#: ./interfaces.py:52
 msgid "help_api_key"
 msgstr ""
 
 #. Default: "Please enter FROM email address."
-#: ./interfaces.py:62
+#: ./interfaces.py:65
 msgid "help_from_email"
 msgstr ""
 
 #. Default: "Please enter FROM email name."
-#: ./interfaces.py:69
+#: ./interfaces.py:72
 msgid "help_from_name"
 msgstr ""
 
-#. Default: "Cancel"
-#: ./browser/z3cformhelpers.py:50
-msgid "label_cancel"
-msgstr ""
-
-#. Default: "Save"
-#: ./browser/z3cformhelpers.py:39
-msgid "label_save"
-msgstr ""
-
-#: ./profiles/default/controlpanel.xml
-msgid "monkey"
+#. Default: "Campaign's items"
+#: ./content/campaign.py:54
+msgid "label_campaign_items"
 msgstr ""
 

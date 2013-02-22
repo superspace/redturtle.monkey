@@ -6,13 +6,16 @@
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="redturtle.monkey">
   <body>
-    <metal:content-core fill-slot="content-core">
-    <dl class="portalMessage info" tal:condition="not: view/available">
-          <dt>Info</dt>
-          <dd i18n:translate="">You cannot start wizard configuration. Your campaign doesn't have any items and/or your
-          mailchimp API configuration is wrong.
-          </dd>
-    </dl>
+    <metal:content-core fill-slot="body">
+    <tal:notallowed condition="not: view/available">
+        <h1 class="documentFirstHeading" tal:content="context/title_or_id">Title</h1>
+        <dl class="portalMessage info">
+              <dt>Info</dt>
+              <dd i18n:translate="">You cannot start wizard configuration. Your campaign doesn't have any items and/or your
+              mailchimp API configuration is wrong.
+              </dd>
+        </dl>
+    </tal:notallowed>
 <form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard" tal:condition="view/available">
   <!-- Tabs -->
   <div id="wizard" class="swMain">
@@ -80,8 +83,10 @@
       <h2 class="StepTitle" i18n:translate="">Campaign details</h2>
       <div id="content">
         <div class="field">
-          <label for="campaign_title" i18n:translate="">
-            Campaign title
+          <label for="campaign_title">
+            <span tal:omit-tag="" i18n:translate="">
+              Campaign title
+              </span>
             <span class="fieldRequired" title="Required">
               (Required)
             </span>
@@ -90,8 +95,10 @@
           <div class="widget"><input class="textType" id="form.campaign_title" name="campaign_title" size="40" type="text" value="" tal:attributes="value context/title_or_id"></div>
         </div>
         <div class="field">
-          <label for="campaign_description" i18n:translate="">
-            Campaign description
+          <label for="campaign_description">
+            <span tal:omit-tag="" i18n:translate="">
+              Campaign description
+            </span>
             <span class="fieldRequired" title="Required">
               (Required)
             </span>

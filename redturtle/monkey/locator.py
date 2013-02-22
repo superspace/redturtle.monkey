@@ -12,7 +12,7 @@ from redturtle.monkey.interfaces import IMonkeySettings
 def connect(func):
     def wrap_connect(self, *args, **kwargs):
         campaign = kwargs.get('campaign')
-        if campaign and campaign.api_key:
+        if campaign and getattr(campaign,'api_key', False):
             self.settings = campaign
         else:
             registry = getUtility(IRegistry)
@@ -79,7 +79,7 @@ class MonkeyLocator(object):
             campaign = self.mailchimp.campaigns(filters={'campaign_id':cid})
             return campaign['data'][0]['web_id']
         except MailChimpException:
-            return None
+            raise
         except PostRequestError:
             return None
         except:
