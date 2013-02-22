@@ -11,5 +11,7 @@
  <!-- main content -->
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Body" />
   <adapter for="* *" factory=".generic.BodyRenderer" name="body"/>
+  <adapter for="* Products.ATContentTypes.interfaces.IATEvent"
+           factory=".event.BodyRenderer" name="body"/>
 
 </configure>
