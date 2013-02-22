@@ -40,6 +40,10 @@ class RedturtleMonkey(PloneSandboxLayer):
                     u'default_from_name': u'info@acme.com',
                 },
             ]})
+        # Ping
+        mailchimp.ping()
+        mocker.count(0, 1000)
+        mocker.result(True)
         # Templates
         mailchimp.templates()
         mocker.count(0, 1000)

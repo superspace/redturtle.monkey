@@ -30,6 +30,22 @@ class TestMonkeyWizard(unittest.TestCase):
         self.assertTrue('My template' in [a.title
                                           for a in view.list_templates()])
 
+    def test_wizard_availability(self):
+        view = getMultiAdapter((self.campaign, self.request),
+                               name="campaign_wizard")
+        # the fresh campaign doesn't have any related items:
+        self.assertFalse(self.campaign.getCampaign_items())
+        self.assertFalse(view.available())
+
+        # let's add some items
+        self.folder.invokeFactory(type_name='Event', id='e1')
+        self.folder.e1.setTitle(u'Event 1')
+        self.folder.invokeFactory(type_name='Event', id='e2')
+        self.folder.e2.setTitle(u'Event 2')
+        self.campaign.setCampaign_items([IUUID(self.folder.e1),
+                                         IUUID(self.folder.e2)])
+        self.assertTrue(view.available())
+
     def test_monkey_wizard_generate_campaign(self):
         from zExceptions import Redirect
 
