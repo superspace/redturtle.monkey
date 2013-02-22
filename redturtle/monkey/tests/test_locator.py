@@ -2,6 +2,7 @@
 import unittest2 as unittest
 
 from zope.component import getUtility
+from plone.app.testing import TEST_USER_ID, setRoles
 
 from redturtle.monkey.testing import \
     REDTURTLE_MONKEY_INTEGRATION_TESTING
@@ -21,12 +22,6 @@ class MonkeyLocatorIntegrationTest(unittest.TestCase):
         from redturtle.monkey.interfaces import IMonkeyLocator
         self.assertTrue(getUtility(IMonkeyLocator))
 
-    def test_mailchimp_locator_connect_method(self):
-        from redturtle.monkey.locator import MonkeyLocator
-        locator = MonkeyLocator()
-        locator.connect()
-        self.assertTrue(locator.mailchimp is not False)
-
     def test_mailchimp_locator_lists_method(self):
         from redturtle.monkey.locator import MonkeyLocator
         locator = MonkeyLocator()
@@ -45,6 +40,23 @@ class MonkeyLocatorIntegrationTest(unittest.TestCase):
         web_id = locator.createCampaign('Title','Subject','List_id',
                                         'Template_id','The content')
         self.assertEqual(web_id, '123QWE456')
+
+    def test_mailchimp_locator_connect(self):
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory(type_name='Campaign', id='c1')
+        self.campaign = self.portal['c1']
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+
+        from redturtle.monkey.locator import MonkeyLocator
+        locator = MonkeyLocator()
+        locator.ping(campaign=self.campaign)
+        self.assertFalse(locator.settings==self.campaign)
+
+        # with proper api_key the settings are set
+        self.campaign.setCampaign_api_key('abc')
+        locator.ping(campaign=self.campaign)
+        self.assertTrue(locator.settings==self.campaign)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

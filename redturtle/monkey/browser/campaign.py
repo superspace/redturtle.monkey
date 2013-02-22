@@ -25,7 +25,7 @@ class CampaignWizard(BrowserView):
     def available(self):
         mailchimp = getUtility(IMonkeyLocator)
         try:
-            mailchimp.ping()
+            mailchimp.ping(campaign=self.context)
         except:
             return False
         if not self.context.getCampaign_items():
@@ -93,7 +93,8 @@ class CampaignWizard(BrowserView):
                                                list_id=list_id,
                                                title=title,
                                                content=content,
-                                               template_id=template_id)
+                                               template_id=template_id,
+                                               campaign=self.context)
         if campaign_id:
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
             raise Redirect,\

@@ -14,44 +14,31 @@ from redturtle.monkey.config import PROJECTNAME
 from redturtle.monkey.interfaces import ICampaign
 
 
-class ImageRadioWidget(atapi.SelectionWidget):
-    _properties = atapi.SelectionWidget._properties.copy()
-    _properties.update({
-        'format': "radio",
-        'macro': "imageradio",
-        'blurrable': True,
-        })
-
-
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
-#    atapi.StringField('campaign_subject',
-#        storage=atapi.AnnotationStorage(),
-#        widget=atapi.StringWidget(
-#            label=_(u"Subject"),
-#            description=_(u"Campaign subject"),
-#        ),
-#    ),
+    atapi.StringField('campaign_api_key',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.StringWidget(
+            label=_(u"Campaign API key"),
+            description=_(u"Custom Mailchimp API key for this campaign"),
+        ),
+    ),
 
-#    atapi.StringField('campaign_list',
-#        storage=atapi.AnnotationStorage(),
-#        required=True,
-#        vocabulary_factory='redturtle.monkey.vocabularies.AvailableLists',
-#        widget=atapi.SelectionWidget(
-#            label=_(u"Campaign list"),
-#            description=_(u"Choose existing Mailchimp list"),
-#        ),
-#    ),
+    atapi.StringField('campaign_from_email',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.StringWidget(
+            label=_(u"Campaign FROM email"),
+            description=_(u"Custom Mailchimp FROM email for this campaign"),
+        ),
+    ),
 
-#    atapi.StringField('campaign_template',
-#        required=True,
-#        storage=atapi.AnnotationStorage(),
-#        vocabulary_factory='redturtle.monkey.vocabularies.AvailableTemplates',
-#        widget=ImageRadioWidget(
-#            label=_(u"Campaign template"),
-#            description=_(u"Choose existing Mailchimp template"),
-#        ),
-#    ),
+    atapi.StringField('campaign_from_name',
+        storage=atapi.AnnotationStorage(),
+        widget=atapi.StringWidget(
+            label=_(u"Campaign FROM name"),
+            description=_(u"Custom Mailchimp FROM name for this campaign"),
+        ),
+    ),
 
     atapi.ReferenceField('campaign_items',
         relationship = 'campaignItems',
@@ -62,7 +49,6 @@ CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
             allow_browse = True,
             allow_sorting = True,
             show_indexes = False,
-            #base_query= {'portal_type': 'Accessory'},
             force_close_on_insert = True,
             show_results_without_query = True,
             label = _(u'label_campaign_items', default=u'Campaign\'s items'),
@@ -95,5 +81,17 @@ class Campaign(ATCTContent):
 
     title = atapi.ATFieldProperty('title')
     description = atapi.ATFieldProperty('description')
+
+    @property
+    def api_key(self):
+        return self.getCampaign_api_key()
+
+    @property
+    def from_name(self):
+        return self.getCampaign_from_name()
+
+    @property
+    def from_email(self):
+        return self.getCampaign_from_email()
 
 atapi.registerType(Campaign, PROJECTNAME)

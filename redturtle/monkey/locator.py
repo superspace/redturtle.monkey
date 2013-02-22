@@ -9,28 +9,35 @@ from redturtle.monkey.interfaces import IMonkeyLocator
 from redturtle.monkey.interfaces import IMonkeySettings
 
 
+def connect(func):
+    def wrap_connect(self, *args, **kwargs):
+        campaign = kwargs.get('campaign')
+        if campaign and campaign.api_key:
+            self.settings = campaign
+        else:
+            registry = getUtility(IRegistry)
+            self.settings = registry.forInterface(IMonkeySettings)
+        self.mailchimp = PostMonkey(self.settings.api_key)
+        return func(self, *args, **kwargs)
+    return wrap_connect
+
+
 class MonkeyLocator(object):
     """Utility for MailChimp API calls.
     """
-
     implements(IMonkeyLocator)
 
-    def connect(self):
-        registry = getUtility(IRegistry)
-        self.settings = registry.forInterface(IMonkeySettings)
-        self.mailchimp = PostMonkey(self.settings.api_key)
-
-    def ping(self):
+    @connect
+    def ping(self, campaign=None):
         """Return simple ping to check if the API is correct"""
-        self.connect()
         return self.mailchimp.ping()
 
-    def lists(self):
+    @connect
+    def lists(self, campaign=None):
         """Return all available MailChimp lists.
         http://apidocs.mailchimp.com/api/rtfm/lists.func.php
         """
         #print("MAILCHIMP LOCATOR: lists")
-        self.connect()
         try:
             # lists returns a dict with 'total' and 'data'. we just need data
             return self.mailchimp.lists()['data']
@@ -41,11 +48,11 @@ class MonkeyLocator(object):
         except:
             raise
 
-    def templates(self):
+    @connect
+    def templates(self, campaign=None):
         """Return all available MailChimp templates.
         http://apidocs.mailchimp.com/api/rtfm/templates.func.php
         """
-        self.connect()
         try:
             return self.mailchimp.templates()['user']
         except MailChimpException:
@@ -55,12 +62,12 @@ class MonkeyLocator(object):
         except:
             raise
 
-    def account(self):
-        self.connect()
+    @connect
+    def account(self, campaign=None):
         return self.mailchimp.getAccountDetails()
 
-    def createCampaign(self, title, subject, list_id, template_id, content):
-        self.connect()
+    @connect
+    def createCampaign(self, title, subject, list_id, template_id, content, campaign=None):
         options = {'subject': subject,
                    'list_id': list_id,
                    'template_id': template_id,
