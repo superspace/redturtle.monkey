@@ -14,6 +14,9 @@ from redturtle.monkey.config import PROJECTNAME
 from redturtle.monkey.interfaces import ICampaign
 
 
+LAST_CAMPAIGN = 'redturtle.monkey.last_campaign'
+
+
 CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
     atapi.StringField('campaign_api_key',

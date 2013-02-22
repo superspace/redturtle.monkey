@@ -8,6 +8,7 @@
     name="campaign_wizard"
     for="..interfaces.ICampaign"
     class=".campaign.CampaignWizard"
+    layer="..interfaces.IRedturtleMonkey"
     template="campaign_wizard.pt"
     permission="redturtle.monkey.create_campaign"
     />
@@ -16,8 +17,19 @@
     name="campaign_created"
     for="..interfaces.ICampaign"
     permission="redturtle.monkey.create_campaign"
+    layer="..interfaces.IRedturtleMonkey"
     template="campaign_created.pt"
     />
+
+  <browser:viewlet
+    for="*"
+    name="redturtle.monkey.last_campaign"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+    class=".viewlets.LastCampaign"
+    layer="..interfaces.IRedturtleMonkey"
+    template="last_campaign_viewlet.pt"
+    permission="zope2.View"
+     />
 
   <!-- Control panel -->
   <include package="plone.app.registry" />

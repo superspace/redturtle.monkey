@@ -1,7 +1,10 @@
+import transaction
 from zExceptions import Redirect
+from persistent.dict import PersistentDict
 from postmonkey import MailChimpException
 from zope.component import getUtility
 from zope.component import subscribers
+from zope.annotation.interfaces import IAnnotations
 from zope.schema.interfaces import IVocabularyFactory
 from plone.app.collection.interfaces import ICollection
 from plone.app.uuid.utils import uuidToObject
@@ -9,7 +12,9 @@ from plone.uuid.interfaces import IUUID
 from plone.app.contentlisting.interfaces import IContentListingObject
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
+from DateTime import DateTime
 
+from redturtle.monkey.content.campaign import LAST_CAMPAIGN
 from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 from redturtle.monkey import  _
 
@@ -73,6 +78,17 @@ class CampaignWizard(BrowserView):
         result = walk(items, result, u'manual_items')
         return result
 
+    def addLastCampaign(self, campaign_id, title):
+        if campaign_id:
+            if not title:
+                title = _(u'Unknown campaign title')
+            ann = IAnnotations(self.context)
+            ann[LAST_CAMPAIGN] = PersistentDict()
+            ann[LAST_CAMPAIGN]['id'] = campaign_id
+            ann[LAST_CAMPAIGN]['title'] = title
+            ann[LAST_CAMPAIGN]['date'] = DateTime()
+            transaction.commit()
+
     def generateCampaign(self):
         """By calling mailchimp API creates a campaign and redirects
         user to the proper URL."""
@@ -97,6 +113,7 @@ class CampaignWizard(BrowserView):
                                                    content=content,
                                                    template_id=template_id,
                                                    campaign=self.context)
+            self.addLastCampaign(campaign_id, title)
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
             raise Redirect,\
                 self.request.response.redirect('%s/@@campaign_created?id=%s' % \
