@@ -22,6 +22,16 @@ class CampaignWizard(BrowserView):
         else:
             return super(CampaignWizard, self).__call__()
 
+    def available(self):
+        mailchimp = getUtility(IMonkeyLocator)
+        try:
+            mailchimp.ping()
+        except:
+            return False
+        if not self.context.getCampaign_items():
+            return False
+        return True
+
     def list_templates(self):
         """List all available mailchimp templates."""
         vfactory = getUtility(IVocabularyFactory,

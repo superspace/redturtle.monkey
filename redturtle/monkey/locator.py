@@ -20,6 +20,11 @@ class MonkeyLocator(object):
         self.settings = registry.forInterface(IMonkeySettings)
         self.mailchimp = PostMonkey(self.settings.api_key)
 
+    def ping(self):
+        """Return simple ping to check if the API is correct"""
+        self.connect()
+        return self.mailchimp.ping()
+
     def lists(self):
         """Return all available MailChimp lists.
         http://apidocs.mailchimp.com/api/rtfm/lists.func.php

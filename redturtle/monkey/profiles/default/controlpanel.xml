@@ -6,7 +6,7 @@
     purge="False">
 
     <configlet
-        title="monkey"
+        title="Monkey"
         action_id="monkey"
         appId="redturtle.monkey"
         category="Products"

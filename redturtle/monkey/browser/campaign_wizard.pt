@@ -6,9 +6,14 @@
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="redturtle.monkey">
   <body>
-    <metal:content-core fill-slot="body">
-
-<form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard">
+    <metal:content-core fill-slot="content-core">
+    <dl class="portalMessage info" tal:condition="not: view/available">
+          <dt>Info</dt>
+          <dd i18n:translate="">You cannot start wizard configuration. Your campaign doesn't have any items and/or your
+          mailchimp API configuration is wrong.
+          </dd>
+    </dl>
+<form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard" tal:condition="view/available">
   <!-- Tabs -->
   <div id="wizard" class="swMain">
     <ul>
