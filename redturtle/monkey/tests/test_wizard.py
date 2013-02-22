@@ -80,14 +80,7 @@ class TestMonkeyWizard(unittest.TestCase):
                                        'uid': IUUID(self.folder.e1),
                                        'enabled': True}]
         # now we should get a proper Redirect
-        try:
-            view.generateCampaign()
-        except Redirect, e:
-            self.assertEqual(e.message, 'http://nohost/plone/f1/c1/@@campaign_created?id=123QWE456')
-        except Exception, e:
-            self.fail('Unexpected exception thrown:', e)
-        else:
-            self.fail('Redirect not thrown')
+        self.assertEqual(view.generateCampaign(), 'http://nohost/plone/f1/c1/@@campaign_created?id=123QWE456')
 
     def test_monkey_wizard_view_protected(self):
         from AccessControl import Unauthorized

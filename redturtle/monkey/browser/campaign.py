@@ -87,7 +87,6 @@ class CampaignWizard(BrowserView):
             ann[LAST_CAMPAIGN]['id'] = campaign_id
             ann[LAST_CAMPAIGN]['title'] = title
             ann[LAST_CAMPAIGN]['date'] = DateTime()
-            transaction.commit()
 
     def generateCampaign(self):
         """By calling mailchimp API creates a campaign and redirects
@@ -115,9 +114,9 @@ class CampaignWizard(BrowserView):
                                                    campaign=self.context)
             self.addLastCampaign(campaign_id, title)
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
-            raise Redirect,\
-                self.request.response.redirect('%s/@@campaign_created?id=%s' % \
-                            (self.context.absolute_url(), campaign_id))
+            return self.request.response.redirect(
+                                 '%s/@@campaign_created?id=%s' % \
+                                 (self.context.absolute_url(), campaign_id))
         except MailChimpException, e:
             IStatusMessage(self.request).add(e, type='error')
             raise Redirect,\
