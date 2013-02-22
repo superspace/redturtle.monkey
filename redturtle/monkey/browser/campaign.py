@@ -81,7 +81,8 @@ class CampaignWizard(BrowserView):
         subject = form.get('campaign_title')
         list_id = form.get('list')
         template_id = form.get('template')
-        title = form.get('campaign_title')
+        description = form.get('campaign_description')
+        title = '%s %s' % (form.get('campaign_title'), description)
 
         content = self.generateCampaignContent(form.get('items'))
         if not content:
