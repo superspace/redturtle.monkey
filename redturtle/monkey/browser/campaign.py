@@ -1,4 +1,3 @@
-import transaction
 from zExceptions import Redirect
 from persistent.dict import PersistentDict
 from postmonkey import MailChimpException
@@ -17,6 +16,34 @@ from DateTime import DateTime
 from redturtle.monkey.content.campaign import LAST_CAMPAIGN
 from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
 from redturtle.monkey import  _
+
+
+class AddItems(BrowserView):
+
+    def __call__(self):
+        """ Process the relation for campaign items. """
+        redirect_url = self.context.absolute_url()
+        items = self.request.form.get('items',[])
+        if not items:
+            IStatusMessage(self.request).add(_(u'We have problems processing your request. Not items found.'), type='error')
+            return self.request.RESPONSE.redirect(redirect_url)
+
+        my_uid = IUUID(self.context)
+
+        for item in items:
+            campaign = uuidToObject(item['uid'])
+            existing_relations = campaign.getRawCampaign_items()
+            if item.get('enabled',False):
+                if my_uid not in existing_relations:
+                    IStatusMessage(self.request).add(_(u'Item added to campaign.'))
+                    existing_relations.append(my_uid)
+            else:
+                if my_uid in existing_relations:
+                    IStatusMessage(self.request).add(_(u'Item removed from campaign.'))
+                    existing_relations.remove(my_uid)
+            campaign.setCampaign_items(existing_relations)
+
+        return self.request.RESPONSE.redirect(redirect_url)
 
 
 class CampaignWizard(BrowserView):

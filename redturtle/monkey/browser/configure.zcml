@@ -13,6 +13,13 @@
     />
 
   <browser:page
+    name="add-items-to-campaign"
+    for="*"
+    class=".campaign.AddItems"
+    permission="redturtle.monkey.create_campaign"
+    />
+
+  <browser:page
     name="campaign_created"
     for="..interfaces.ICampaign"
     permission="redturtle.monkey.create_campaign"

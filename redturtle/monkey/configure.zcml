@@ -16,6 +16,7 @@
 
   <include package=".browser" />
   <include package=".content" />
+  <include package=".portlet" />
   <include package=".slots" />
   <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
 
