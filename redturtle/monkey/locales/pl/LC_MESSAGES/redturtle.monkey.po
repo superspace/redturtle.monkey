@@ -14,7 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./content/campaign.py:22
+#: ./portlet/addtocampaign.py:25
+msgid "Add item to campaign"
+msgstr ""
+
+#: ./content/campaign.py:25
 msgid "Campaign API key"
 msgstr ""
 
@@ -22,11 +26,11 @@ msgstr ""
 msgid "Campaign Configuration"
 msgstr ""
 
-#: ./content/campaign.py:30
+#: ./content/campaign.py:33
 msgid "Campaign FROM email"
 msgstr ""
 
-#: ./content/campaign.py:38
+#: ./content/campaign.py:41
 msgid "Campaign FROM name"
 msgstr ""
 
@@ -50,23 +54,27 @@ msgstr ""
 msgid "Campaign wizard"
 msgstr ""
 
+#: ./portlet/addtocampaign.pt:11
+msgid "Choose campaign configurator:"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:27
 msgid "Choose items for mailchimp"
 msgstr ""
 
-#: ./browser/campaign.py:88
+#: ./browser/campaign.py:131
 msgid "Couldn't generate campaign items."
 msgstr ""
 
-#: ./content/campaign.py:23
+#: ./content/campaign.py:26
 msgid "Custom Mailchimp API key for this campaign"
 msgstr ""
 
-#: ./content/campaign.py:31
+#: ./content/campaign.py:34
 msgid "Custom Mailchimp FROM email for this campaign"
 msgstr ""
 
-#: ./content/campaign.py:39
+#: ./content/campaign.py:42
 msgid "Custom Mailchimp FROM name for this campaign"
 msgstr ""
 
@@ -86,6 +94,18 @@ msgstr ""
 msgid "Invalid email address"
 msgstr ""
 
+#: ./browser/campaign.py:38
+msgid "Item added to campaign."
+msgstr ""
+
+#: ./browser/campaign.py:42
+msgid "Item removed from campaign."
+msgstr ""
+
+#: ./browser/last_campaign_viewlet.pt:3
+msgid "Last camapaign"
+msgstr ""
+
 #: ./interfaces.py:51
 msgid "MailChimp API Key"
 msgstr ""
@@ -98,7 +118,7 @@ msgstr ""
 msgid "Mailchimp campaign created!"
 msgstr ""
 
-#: ./browser/campaign.py:99
+#: ./browser/campaign.py:143
 msgid "Mailchimp campaign created."
 msgstr ""
 
@@ -108,6 +128,10 @@ msgstr ""
 
 #: ./profiles/default/controlpanel.xml
 msgid "Monkey"
+msgstr ""
+
+#: ./portlet/addtocampaign.py:58
+msgid "Office information portlet"
 msgstr ""
 
 #: ./slots/event_body.pt:6
@@ -125,6 +149,18 @@ msgstr ""
 
 #: ./browser/campaign_wizard.pt:93
 msgid "This title will be used as a campaign title as well as campaign subject."
+msgstr ""
+
+#: ./browser/campaign.py:111
+msgid "Unknown campaign title"
+msgstr ""
+
+#: ./portlet/addtocampaign.pt:26
+msgid "Update"
+msgstr ""
+
+#: ./browser/campaign.py:28
+msgid "We have problems processing your request. Not items found."
 msgstr ""
 
 #: ./browser/campaign_wizard.pt:14
@@ -147,7 +183,7 @@ msgid "help_from_name"
 msgstr ""
 
 #. Default: "Campaign's items"
-#: ./content/campaign.py:54
+#: ./content/campaign.py:57
 msgid "label_campaign_items"
 msgstr ""
 
