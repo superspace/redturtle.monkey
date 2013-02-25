@@ -11,10 +11,8 @@
   display:block;
   margin:0;
   padding:0;
-  border: 0px solid #CCC;
   overflow:visible;
-  float:left;
-  width:980px;
+  width:100%;
 }
 .swMain .stepContainer {
   display:block;
@@ -29,8 +27,7 @@
 
 .swMain .stepContainer div.content {
   display:block;
-  position: absolute;  
-  float:left;
+  position: relative; 
   margin: 0;
   padding:5px;    
   border: 1px solid #CCC; 
@@ -41,7 +38,7 @@
   z-index:88; 
   -webkit-border-radius: 5px;
   -moz-border-radius  : 5px;
-  width:968px;
+ 
   clear:both;
 }
 
@@ -92,13 +89,9 @@
 }
 .swMain ul.anchor li{ 
   position: relative; 
-  display:block;
-  margin: 0;
+  display:inline-block;
+  margin: 0 15px 0 0;
   padding: 0; 
-  padding-left:3px;
-  padding-right: 3px;
-  border: 0px solid #E0E0E0;      
-  float: left;
 }
 /* Anchor Element Style */
 .swMain ul.anchor li a {
@@ -106,9 +99,7 @@
   position:relative;
   float:left;
   margin:0;
-  padding:3px;
-  height:60px;
-  width:230px;
+  padding:10px;
   text-decoration: none;
   outline-style:none;
   -moz-border-radius  : 5px;
@@ -118,11 +109,15 @@
 .swMain ul.anchor li a .stepNumber{
   position:relative;
   float:left;
-  width:30px;
+  display: block;
   text-align: center;
-  padding:5px;
-  padding-top:0;
-  font: bold 45px Verdana, Arial, Helvetica, sans-serif;
+  padding:0 12px 4px;
+  font: bold 36px Georgia, serif;
+  background-color: #CCC;
+  color: #FFF;
+  border-radius  : 20px;
+  -moz-border-radius  : 20px;
+  -webkit-border-radius: 20px;
 }
 .swMain ul.anchor li a .stepDesc{
   position:relative;
@@ -130,52 +125,52 @@
   float:left;
   text-align: left;
   padding:5px;
-  font: bold 20px Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 0.9em;
+  margin-left: 6px;
 }
 .swMain ul.anchor li a .stepDesc small{
   font: normal 12px Verdana, Arial, Helvetica, sans-serif;
 }
 .swMain ul.anchor li a.selected{
   color:#F8F8F8;
-  background: #EA8511;  /* EA8511 */
-  border: 1px solid #EA8511;
+  background: #AA0000;  /* EA8511 */
   cursor:text;
-  -moz-box-shadow: 5px 5px 8px #888;
+/*  -moz-box-shadow: 5px 5px 8px #888;
   -webkit-box-shadow: 5px 5px 8px #888;
-  box-shadow: 5px 5px 8px #888;
+  box-shadow: 5px 5px 8px #888;*/
 }
-.swMain ul.anchor li a.selected:hover {
-  color:#F8F8F8;  
-  background: #EA8511;  
+.swMain ul.anchor li a.selected .stepNumber {
+  background-color: #FFF;
+  color: #AA0000;
+}
+.swMain ul.anchor li a.done .stepNumber {
+  background-color: #5B850B;
+  color: ##CAE98F;
 }
 
 .swMain ul.anchor li a.done { 
   position:relative;
   color:#FFF;  
   background: #75AD0A;  
-  border: 1px solid #75AD0A;   
   z-index:99;
 }
 .swMain ul.anchor li a.done:hover {
-  color:#5A5655;  
-  background: #75AD0A; 
-  border: 1px solid #5A5655;   
+ 
 }
 .swMain ul.anchor li a.disabled {
   color:#CCCCCC;  
   background: #F8F8F8;
-  border: 1px solid #CCC;  
   cursor:text;   
 }
 .swMain ul.anchor li a.disabled:hover {
-  color:#CCCCCC;  
-  background: #F8F8F8;     
+
 }
 
 .swMain ul.anchor li a.error {
-  color:#6c6c6c !important;  
-  background: #f08f75 !important;
-  border: 1px solid #fb3500 !important;      
+  color:#FFF !important;  
+  background: #f00 !important;   
 }
 .swMain ul.anchor li a.error:hover {
   color:#000 !important;       
@@ -303,4 +298,18 @@
 
 .last_mailchimp_campaign {
   font-size: 80%;
+  padding: 2em 1em;
+  color: #666;
+  font-style: italic;
+}
+.last_mailchimp_campaign a.managePortletsFallback {
+  background-color: #F60;
+  color: #FFF;
+  font-size: 1em;
+  margin-left: 1em;
+  font-style: normal;
+}
+.swMain .field input.textType {
+  padding: 0.3em 0.5em;
+  min-width: 50%;
 }
