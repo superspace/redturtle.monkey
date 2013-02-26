@@ -1,9 +1,9 @@
-from zope.component import getUtility
+from zope.component import getUtility, queryMultiAdapter
 from zope.component import subscribers
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 
-from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot
+from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot, IMailchimpSlotRenderer
 
 
 def available_lists(context):
@@ -29,5 +29,7 @@ def available_templates(context):
 def available_slots(context):
     slots = subscribers([context], IMailchimpSlot)
     return SimpleVocabulary([
-        SimpleTerm(value=str(li.name), title=li.name) for li in slots]
+        SimpleTerm(value=str(li.name), title=li.name) for li in slots \
+                if queryMultiAdapter((context, context.REQUEST),
+                                     IMailchimpSlotRenderer, name=li.name)]
     )

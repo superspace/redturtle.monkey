@@ -107,6 +107,15 @@
           <div class="widget"><input class="textType" id="form.campaign_description" name="campaign_description" size="40" type="text" value="" tal:attributes="value context/Description"></div>
         </div>
         <div class="field">
+          <label for="campaign_number">
+            <span tal:omit-tag="" i18n:translate="">
+              Campaign number
+            </span>
+            <span class="formHelp" i18n:translate="">This field will be used as campaign number (ie. Number 7 - February 2013).</span>
+          </label>
+          <div class="widget"><input class="textType" id="form.campaign_number" name="campaign_number" size="40" type="text" value=""></div>
+        </div>
+        <div class="field">
           <label for="template">
             Campaign template
             <span class="fieldRequired" title="Required">

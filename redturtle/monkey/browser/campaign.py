@@ -124,9 +124,11 @@ class CampaignWizard(BrowserView):
         list_id = form.get('list')
         template_id = form.get('template')
         description = form.get('campaign_description')
-        title = '%s %s' % (form.get('campaign_title'), description)
+        number = form.get('campaign_number')
+        title = form.get('campaign_title')
 
-        content = self.generateCampaignContent(form.get('items'))
+        content = self.generateCampaignContent(title, description, number,
+                                                            form.get('items'))
         if not content:
             IStatusMessage(self.request).add(_(u'Couldn\'t generate campaign items.'))
             raise Redirect,\
@@ -134,11 +136,11 @@ class CampaignWizard(BrowserView):
                                                   self.context.absolute_url())
         try:
             campaign_id = mailchimp.createCampaign(subject=subject,
-                                                   list_id=list_id,
-                                                   title=title,
-                                                   content=content,
-                                                   template_id=template_id,
-                                                   campaign=self.context)
+                                          list_id=list_id,
+                                          title='%s %s' % (title, description),
+                                          content=content,
+                                          template_id=template_id,
+                                          campaign=self.context)
             self.addLastCampaign(campaign_id, title)
             IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
             return self.request.response.redirect(
@@ -150,7 +152,7 @@ class CampaignWizard(BrowserView):
                 self.request.response.redirect(self.context.absolute_url())
 
 
-    def generateCampaignContent(self, items):
+    def generateCampaignContent(self, title, description, number, items):
         """Tries to render the html content for the campaign items,
         using the slot subscribers."""
         content = {}
@@ -167,7 +169,11 @@ class CampaignWizard(BrowserView):
 
         slots = subscribers([self.context], IMailchimpSlot)
         for slot in slots:
-            html = slot.render(self.request, items_in_slots.get(slot.name, []))
+            objs = items_in_slots.get(slot.name, [])
+            html = slot.render(objs=objs,
+                               title=title,
+                               description=description,
+                               number=number)
             if not html: # Let's skip empty slots
                 continue
             content['html_%s' % slot.name] = html

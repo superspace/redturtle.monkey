@@ -1,2 +1,0 @@
-<h1 tal:content="context/title_or_id">title</h1>
-<p tal:content="context/Description">Description</p>
