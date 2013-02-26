@@ -5,10 +5,9 @@ from zope.component import getUtility
 from zope.component import subscribers
 from zope.annotation.interfaces import IAnnotations
 from zope.schema.interfaces import IVocabularyFactory
-from plone.app.collection.interfaces import ICollection
+from Products.ATContentTypes.interfaces import IATTopic
 from plone.app.uuid.utils import uuidToObject
 from plone.uuid.interfaces import IUUID
-from plone.app.contentlisting.interfaces import IContentListingObject
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 from DateTime import DateTime
@@ -90,10 +89,9 @@ class CampaignWizard(BrowserView):
 
         def walk(items, result, parent):
             for item in items:
-                if IContentListingObject.providedBy(item):
-                    item = item.getObject()
-                if ICollection.providedBy(item):
-                    collection = item.getQuery()
+                if IATTopic.providedBy(item):
+                    collection = item.queryCatalog(b_size=100,
+                                                   full_objects=True)
                     if collection:
                         result[item.title_or_id()] = []
                         walk(collection, result, item.title_or_id())
