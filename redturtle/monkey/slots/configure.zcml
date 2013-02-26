@@ -10,7 +10,7 @@
 
  <!-- main content -->
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Body" />
-  <adapter for="* *" factory=".generic.BodyRenderer" name="main_other"/>
+  <adapter for="* *" factory=".generic.BodyRenderer" name="main_body"/>
 
   <!-- pre header content -->
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.PreHeaderContent" />

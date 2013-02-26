@@ -10,10 +10,10 @@ class HeaderRenderer(SlotRenderer):
 
 
 class Body(Slot):
-    name = u'main_other'
+    name = u'main_body'
 
 class BodyRenderer(SlotRenderer):
-    template = ViewPageTemplateFile("main-other.pt")
+    template = ViewPageTemplateFile("main-body.pt")
 
 
 class PreHeaderContent(Slot):
