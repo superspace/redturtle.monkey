@@ -8,9 +8,10 @@
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Header" />
   <adapter for="* *" factory=".generic.HeaderRenderer" name="main_primopiano"/>
 
- <!-- main content -->
+ <!-- main content 
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.Body" />
   <adapter for="* *" factory=".generic.BodyRenderer" name="main_body"/>
+ -->
 
   <!-- pre header content -->
   <subscriber provides="..interfaces.IMailchimpSlot" factory=".generic.PreHeaderContent" />
