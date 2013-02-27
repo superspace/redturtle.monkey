@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-25 12:47+0000\n"
+"POT-Creation-Date: 2013-02-27 16:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,10 @@ msgstr ""
 msgid "Campaign items"
 msgstr ""
 
+#: ./browser/campaign_wizard.pt:111
+msgid "Campaign number"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:87
 msgid "Campaign title"
 msgstr ""
@@ -69,7 +73,7 @@ msgstr ""
 msgid "Choose items for mailchimp"
 msgstr ""
 
-#: ./browser/campaign.py:131
+#: ./browser/campaign.py:138
 msgid "Couldn't generate campaign items."
 msgstr ""
 
@@ -101,11 +105,11 @@ msgstr ""
 msgid "Invalid email address"
 msgstr ""
 
-#: ./browser/campaign.py:38
+#: ./browser/campaign.py:43
 msgid "Item added to campaign."
 msgstr ""
 
-#: ./browser/campaign.py:42
+#: ./browser/campaign.py:47
 msgid "Item removed from campaign."
 msgstr ""
 
@@ -125,7 +129,7 @@ msgstr ""
 msgid "Mailchimp campaign created!"
 msgstr ""
 
-#: ./browser/campaign.py:143
+#: ./browser/campaign.py:150
 msgid "Mailchimp campaign created."
 msgstr ""
 
@@ -137,12 +141,12 @@ msgstr ""
 msgid "Monkey"
 msgstr ""
 
-#: ./portlet/addtocampaign.py:58
+#: ./portlet/addtocampaign.py:57
 msgid "Office information portlet"
 msgstr ""
 
-#: ./slots/event_body.pt:6
-#: ./slots/generic_body.pt:4
+#: ./slots/main-body.pt:4
+#: ./slots/main-primopiano.pt:4
 msgid "Read more"
 msgstr ""
 
@@ -154,11 +158,15 @@ msgstr ""
 msgid "This field will be used as a campaign content."
 msgstr ""
 
+#: ./browser/campaign_wizard.pt:114
+msgid "This field will be used as campaign number (ie. Number 7 - February 2013)."
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:93
 msgid "This title will be used as a campaign title as well as campaign subject."
 msgstr ""
 
-#: ./browser/campaign.py:111
+#: ./browser/campaign.py:118
 msgid "Unknown campaign title"
 msgstr ""
 
@@ -166,12 +174,24 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: ./browser/campaign.py:28
+#: ./browser/campaign.py:33
 msgid "We have problems processing your request. Not items found."
 msgstr ""
 
 #: ./browser/campaign_wizard.pt:14
 msgid "You cannot start wizard configuration. Your campaign doesn't have any items and/or your mailchimp API configuration is wrong."
+msgstr ""
+
+#: ./slots/generic.py:30
+msgid "campaign_title"
+msgstr ""
+
+#: ./slots/generic.py:39
+msgid "header_number"
+msgstr ""
+
+#: ./slots/generic.py:48
+msgid "header_title"
 msgstr ""
 
 #. Default: "Enter in your MailChimp key here (.e.g. '8b785dcabe4b5aa24ef84201ea7dcded-us4'). Log into mailchimp.com, go to account -> extras -> API Keys & Authorized Apps and copy the API Key to this field."
@@ -192,5 +212,17 @@ msgstr ""
 #. Default: "Campaign's items"
 #: ./content/campaign.py:57
 msgid "label_campaign_items"
+msgstr ""
+
+#: ./slots/generic.py:14
+msgid "main_body"
+msgstr ""
+
+#: ./slots/generic.py:7
+msgid "main_primopiano"
+msgstr ""
+
+#: ./slots/generic.py:21
+msgid "preheader_content"
 msgstr ""
 
