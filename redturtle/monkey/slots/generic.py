@@ -48,5 +48,5 @@ class HeaderTitle(Slot):
     template = ViewPageTemplateFile("header-title.pt")
 
     def render(self, objs=None, **kw):
-        if kw.get('title'):
-            return self.template(title=kw['title'])
+        if kw.get('description'):
+            return self.template(title=kw['description'])
