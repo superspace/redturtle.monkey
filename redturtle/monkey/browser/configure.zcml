@@ -26,13 +26,11 @@
     template="campaign_created.pt"
     />
 
-  <browser:viewlet
-    for="*"
-    name="redturtle.monkey.last_campaign"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-    class=".viewlets.LastCampaign"
+  <browser:page
+    for="..interfaces.ICampaign"
+    name="last_campaign"
+    class=".last_campaign.LastCampaign"
     layer="..interfaces.IRedturtleMonkey"
-    template="last_campaign_viewlet.pt"
     permission="zope2.View"
      />
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-27 16:59+0000\n"
+"POT-Creation-Date: 2013-02-27 17:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,12 +113,16 @@ msgstr ""
 msgid "Item removed from campaign."
 msgstr ""
 
-#: ./browser/last_campaign_viewlet.pt:3
+#: ./skins/redturtle.monkey/campaign_view.pt:19
 msgid "Last camapaign"
 msgstr ""
 
 #: ./interfaces.py:51
 msgid "MailChimp API Key"
+msgstr ""
+
+#: ./skins/redturtle.monkey/campaign_view.pt:12
+msgid "MailChimp archive"
 msgstr ""
 
 #: ./browser/controlpanel.py:19
@@ -184,6 +188,10 @@ msgstr ""
 
 #: ./slots/generic.py:30
 msgid "campaign_title"
+msgstr ""
+
+#: ./skins/redturtle.monkey/campaign_view.pt:22
+msgid "created at"
 msgstr ""
 
 #: ./slots/generic.py:39

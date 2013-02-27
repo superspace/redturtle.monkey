@@ -106,12 +106,16 @@ msgstr ""
 msgid "Item removed from campaign."
 msgstr ""
 
-#: ./browser/last_campaign_viewlet.pt:3
+#: ./skins/redturtle.monkey/campaign_view.pt:19
 msgid "Last camapaign"
 msgstr ""
 
 #: ./interfaces.py:51
 msgid "MailChimp API Key"
+msgstr ""
+
+#: ./skins/redturtle.monkey/campaign_view.pt:12
+msgid "MailChimp archive"
 msgstr ""
 
 #: ./browser/controlpanel.py:19
@@ -179,6 +183,10 @@ msgstr ""
 msgid "campaign_title"
 msgstr ""
 
+#: ./skins/redturtle.monkey/campaign_view.pt:22
+msgid "created at"
+msgstr ""
+
 #: ./slots/generic.py:39
 msgid "header_number"
 msgstr ""
@@ -213,7 +221,7 @@ msgstr ""
 
 #: ./slots/generic.py:7
 msgid "main_primopiano"
-msgstr ""
+msgstr "Na pierwszej stronie"
 
 #: ./slots/generic.py:21
 msgid "preheader_content"

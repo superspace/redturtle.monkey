@@ -1,7 +1,0 @@
-<div class="last_mailchimp_campaign" i18n:domain="redturtle.monkey"
-  tal:define="lc view/last_campaign">
-  <span i18n:translate="">Last camapaign</span>
-  <span tal:content="lc/date | string:"/>:
-  <a target="blank_" href="" class="managePortletsFallback"
-    tal:attributes="href string:https://us6.admin.mailchimp.com/campaigns/wizard/confirm?id=${lc/id}" tal:content="lc/title"></a>
-</div>
