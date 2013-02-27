@@ -30,4 +30,4 @@ class TestMonkeyVocabularies(unittest.TestCase):
         vfactory = getUtility(IVocabularyFactory,
                       name='redturtle.monkey.vocabularies.AvailableSlots')
         vocab = vfactory(self.portal)
-        self.assertTrue(u'body' in [a.title for a in vocab])
+        self.assertTrue(u'main_primopiano' in [a.title for a in vocab])

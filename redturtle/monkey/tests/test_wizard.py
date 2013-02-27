@@ -106,20 +106,20 @@ class TestMonkeyWizard(unittest.TestCase):
         self.folder.e2.setTitle(u'Event 2')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
-        items = [{'slot': 'header',
+        items = [{'slot': 'main_primopiano',
                   'uid': IUUID(self.folder.e2),
                   'enabled': True},
-                 {'slot': 'body',
+                 {'slot': 'main_body',
                   'uid': IUUID(self.folder.e1),
                   'enabled': True}]
 
         content = view.generateCampaignContent(None,None,None, items)
-        self.assertTrue('html_body' in content)
-        self.assertTrue('html_header' in content)
+        self.assertTrue('html_main_body' in content)
+        self.assertTrue('html_main_primopiano' in content)
 
         # Finally let's check the HTML
-        self.assertTrue('<h1>Event 2</h1>' in content['html_header'])
-        self.assertTrue('<h2>Event 1</h2>' in content['html_body'])
+        self.assertTrue('<h1>Event 2</h1>' in content['html_main_primopiano'])
+        self.assertTrue('<h2>Event 1</h2>' in content['html_main_body'])
 
     def test_monkey_wizard_list_campaign_items(self):
         view = getMultiAdapter((self.campaign, self.request),
