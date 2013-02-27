@@ -131,11 +131,9 @@ class CampaignWizard(BrowserView):
         list_id = form.get('list')
         template_id = form.get('template')
         description = form.get('campaign_description')
-        number = form.get('campaign_number')
         title = form.get('campaign_title')
 
-        content = self.generateCampaignContent(title, description, number,
-                                                            form.get('items'))
+        content = self.generateCampaignContent(objs=form.get('items'), **form)
         if not content:
             IStatusMessage(self.request).add(_(u'Couldn\'t generate campaign items.'))
             raise Redirect,\
@@ -158,15 +156,15 @@ class CampaignWizard(BrowserView):
             raise Redirect,\
                 self.request.response.redirect(self.context.absolute_url())
 
-    def generateCampaignContent(self, title, description, number, items):
+    def generateCampaignContent(self, objs=None, **kw):
         """Tries to render the html content for the campaign items,
         using the slot subscribers."""
         content = {}
-        if not items:
+        if not objs:
             return content
 
         items_in_slots = {}
-        for item in items:
+        for item in objs:
             if not item.get('enabled'):
                 continue
             if item['slot'] not in items_in_slots:
@@ -176,10 +174,7 @@ class CampaignWizard(BrowserView):
         slots = subscribers([self.context], IMailchimpSlot)
         for slot in slots:
             objs = items_in_slots.get(slot.name, [])
-            html = slot.render(objs=objs,
-                               title=title,
-                               description=description,
-                               number=number)
+            html = slot.render(objs=objs, **kw)
             if not html: # Let's skip empty slots
                 continue
             content['html_%s' % slot.name] = html

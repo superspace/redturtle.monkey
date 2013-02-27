@@ -73,10 +73,10 @@ class TestMonkeyWizard(unittest.TestCase):
         self.request.form['campaign_title'] = 'Title'
         self.request.form['list'] = 'List id'
         self.request.form['template'] = 'Template id'
-        self.request.form['items'] = [{'slot': 'header',
+        self.request.form['items'] = [{'slot': 'main_primopiano',
                                        'uid': IUUID(self.folder.e2),
                                        'enabled': True},
-                                      {'slot': 'body',
+                                      {'slot': 'main_body',
                                        'uid': IUUID(self.folder.e1),
                                        'enabled': True}]
         # now we should get a proper Redirect
@@ -96,7 +96,7 @@ class TestMonkeyWizard(unittest.TestCase):
                                name="campaign_wizard")
 
         # First the campaign is empty
-        self.assertEqual(view.generateCampaignContent(None, None,None, []), {})
+        self.assertEqual(view.generateCampaignContent(objs=[]), {})
 
         # Let's add related items
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -113,7 +113,7 @@ class TestMonkeyWizard(unittest.TestCase):
                   'uid': IUUID(self.folder.e1),
                   'enabled': True}]
 
-        content = view.generateCampaignContent(None,None,None, items)
+        content = view.generateCampaignContent(objs=items)
         self.assertTrue('html_main_body' in content)
         self.assertTrue('html_main_primopiano' in content)
 

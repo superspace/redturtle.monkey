@@ -93,7 +93,7 @@ class IMailchimpSlot(Interface):
         title=_(u"Mailchimp slot name"),
         required=True)
 
-    def render():
+    def render(objs=None, **kw):
         """Calls IMailchimpSlotRenderer to generate HTML for slot"""
 
 
