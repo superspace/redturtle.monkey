@@ -8,10 +8,10 @@ from zope.schema.interfaces import IVocabularyFactory
 from Products.ATContentTypes.interfaces import IATTopic
 try:
     from plone.app.collection.interfaces import ICollection
+    from plone.app.contentlisting.interfaces import IContentListingObject
     COLLECTION = True
 except ImportError:
     COLLECTION = False
-from plone.app.contentlisting.interfaces import IContentListingObject
 from plone.app.uuid.utils import uuidToObject
 from plone.uuid.interfaces import IUUID
 from Products.statusmessages.interfaces import IStatusMessage
@@ -95,7 +95,7 @@ class CampaignWizard(BrowserView):
         def walk(items, result, parent):
             for item in items:
                 collection = []
-                if IContentListingObject.providedBy(item):
+                if COLLECTION and IContentListingObject.providedBy(item):
                     item = item.getObject()
                 elif IATTopic.providedBy(item):
                     collection = item.queryCatalog(b_size=100, full_objects=True)
