@@ -34,8 +34,7 @@ class Renderer(base.Renderer):
         related = [a.sourceUID for a in references]
 
         portal_catalog = getToolByName(self.context, 'portal_catalog')
-        brains = portal_catalog(portal_type='Campaign',
-                                review_state='published')
+        brains = portal_catalog(portal_type='Campaign')
         not_related = [a.UID for a in brains if a.UID not in related]
 
         result['related'] = [uuidToObject(u) for u in related]
