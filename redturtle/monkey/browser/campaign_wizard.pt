@@ -69,7 +69,7 @@
                   <td>
                     <select name="items.slot:records" size="1">
                       <tal:slots repeat="slot view/list_slots">
-                          <option value="" tal:attributes="value slot/value" tal:content="slot/title"></option>
+                          <option value="" tal:attributes="value slot/value" tal:content="slot/title" i18n:translate=""></option>
                       </tal:slots>
                     </select>
                     </td>
