@@ -96,7 +96,7 @@ class TestMonkeyWizard(unittest.TestCase):
                                name="campaign_wizard")
 
         # First the campaign is empty
-        self.assertEqual(view.generateCampaignContent([]), {})
+        self.assertEqual(view.generateCampaignContent(None, None,None, []), {})
 
         # Let's add related items
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -113,7 +113,7 @@ class TestMonkeyWizard(unittest.TestCase):
                   'uid': IUUID(self.folder.e1),
                   'enabled': True}]
 
-        content = view.generateCampaignContent(items)
+        content = view.generateCampaignContent(None,None,None, items)
         self.assertTrue('html_body' in content)
         self.assertTrue('html_header' in content)
 

@@ -6,6 +6,12 @@ from zope.component import subscribers
 from zope.annotation.interfaces import IAnnotations
 from zope.schema.interfaces import IVocabularyFactory
 from Products.ATContentTypes.interfaces import IATTopic
+try:
+    from plone.app.collection.interfaces import ICollection
+    COLLECTION = True
+except ImportError:
+    COLLECTION = False
+from plone.app.contentlisting.interfaces import IContentListingObject
 from plone.app.uuid.utils import uuidToObject
 from plone.uuid.interfaces import IUUID
 from Products.statusmessages.interfaces import IStatusMessage
@@ -86,15 +92,18 @@ class CampaignWizard(BrowserView):
         """List all campaign items group by folderish/nonfolderish types."""
         items = self.context.getCampaign_items()
         result = {u'manual_items':[]}
-
         def walk(items, result, parent):
             for item in items:
-                if IATTopic.providedBy(item):
-                    collection = item.queryCatalog(b_size=100,
-                                                   full_objects=True)
-                    if collection:
-                        result[item.title_or_id()] = []
-                        walk(collection, result, item.title_or_id())
+                collection = []
+                if IContentListingObject.providedBy(item):
+                    item = item.getObject()
+                elif IATTopic.providedBy(item):
+                    collection = item.queryCatalog(b_size=100, full_objects=True)
+                elif COLLECTION and ICollection.providedBy(item):
+                    collection = item.getQuery()
+                if collection:
+                    result[item.title_or_id()] = []
+                    walk(collection, result, item.title_or_id())
                 else:
                     result[parent].append({'uid': IUUID(item),
                                            'title': item.title_or_id()})
@@ -148,7 +157,6 @@ class CampaignWizard(BrowserView):
             IStatusMessage(self.request).add(e, type='error')
             raise Redirect,\
                 self.request.response.redirect(self.context.absolute_url())
-
 
     def generateCampaignContent(self, title, description, number, items):
         """Tries to render the html content for the campaign items,

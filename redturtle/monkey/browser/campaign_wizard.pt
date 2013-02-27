@@ -45,7 +45,7 @@
                 <tr>
                   <th>
                     <div class="field">
-                      <input type="checkbox" class="toggle-checkbox">
+                      <input type="checkbox" class="toggle-checkbox" checked="1">
                       </div>
                     </th>
                   <th>Item</th>
@@ -58,7 +58,7 @@
                     <div class="field">
                       <input type="hidden" name="items.uid:records" 
                             value="" tal:attributes="value item/uid">
-                      <input type="checkbox" value="1" name="items.enabled:records:boolean">
+                      <input type="checkbox" value="1" name="items.enabled:records:boolean" checked="1">
                     </div>
                   </td>
                   <td>
