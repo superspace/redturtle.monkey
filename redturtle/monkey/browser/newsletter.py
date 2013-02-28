@@ -128,7 +128,7 @@ class NewsletterSubscriberForm(extensible.ExtensibleForm, form.Form):
                 u"inside the email we just send you."),
                 type="info"
             )
-            self.request.response.redirect(self.context.absolute_url())
+            self.request.response.redirect('%s/@@newsletter_subscribed' % self.context.absolute_url())
 
 
 NewsletterView = wrap_form(NewsletterSubscriberForm)

@@ -51,11 +51,4 @@ def email_type(context):
             title='HTML',
         )
     )
-    terms.append(
-        SimpleTerm(
-            value='mobile',
-            token='mobile',
-            title='Mobile',
-        )
-    )
     return SimpleVocabulary(terms)

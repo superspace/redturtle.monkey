@@ -27,6 +27,13 @@
     />
 
   <browser:page
+    name="newsletter_subscribed"
+    for="*"
+    template="newsletter_subscribed.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
     for="..interfaces.ICampaign"
     name="last_campaign"
     class=".last_campaign.LastCampaign"

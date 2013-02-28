@@ -54,6 +54,8 @@ class INewsletterSubscribe(Interface):
     email_type = schema.Choice(
         title=_(u"Mail format"),
         vocabulary="redturtle.monkey.vocabularies.EmailType",
+        description=_(u"help_email_type",
+                      default=u"Please choose type of newsletter you wish to receive."),
         default="text",
         required=False,
     )
