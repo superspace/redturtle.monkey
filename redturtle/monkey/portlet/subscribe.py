@@ -106,6 +106,7 @@ class AddForm(AddForm):
 
 class EditForm(EditForm):
     fields = field.Fields(IMailChimpPortlet)
+    fields['text'].widgetFactory = WysiwygFieldWidget
     label = _(u"Edit MailChimp Portlet")
     description = _(
         u"This portlet displays a subscription form for a " +
