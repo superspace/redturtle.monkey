@@ -33,3 +33,29 @@ def available_slots(context):
                 if queryMultiAdapter((context, context.REQUEST),
                                      IMailchimpSlotRenderer, name=li.name)]
     )
+
+
+def email_type(context):
+    terms = []
+    terms.append(
+        SimpleTerm(
+            value='text',
+            token='text',
+            title='Plain text',
+        )
+    )
+    terms.append(
+        SimpleTerm(
+            value='html',
+            token='html',
+            title='HTML',
+        )
+    )
+    terms.append(
+        SimpleTerm(
+            value='mobile',
+            token='mobile',
+            title='Mobile',
+        )
+    )
+    return SimpleVocabulary(terms)

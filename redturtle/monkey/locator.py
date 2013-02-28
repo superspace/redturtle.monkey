@@ -84,3 +84,21 @@ class MonkeyLocator(object):
             return None
         except:
             raise
+
+    @connect
+    def subscribe(self, list_id, email_address, merge_vars, email_type):
+        if not email_type:
+            email_type = u'html'
+        try:
+            self.mailchimp.listSubscribe(
+                id=list_id,
+                email_address=email_address,
+                merge_vars=merge_vars,
+                email_type=email_type,
+                double_optin=True,
+                update_existing=False,
+                replace_interests=True,
+                send_welcome=False
+            )
+        except MailChimpException:
+            raise

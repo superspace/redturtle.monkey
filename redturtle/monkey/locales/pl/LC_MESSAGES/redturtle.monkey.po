@@ -14,8 +14,16 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./portlet/subscribe.py:81
+msgid "Add MailChimp Portlet"
+msgstr ""
+
 #: ./portlet/addtocampaign.py:25
 msgid "Add item to campaign"
+msgstr ""
+
+#: ./portlet/subscribe.py:33
+msgid "Available lists"
 msgstr ""
 
 #: ./content/campaign.py:25
@@ -66,6 +74,10 @@ msgstr ""
 msgid "Choose items for mailchimp"
 msgstr ""
 
+#: ./portlet/z3cformhelpers.py:21
+msgid "Configure portlet"
+msgstr ""
+
 #: ./browser/campaign.py:138
 msgid "Couldn't generate campaign items."
 msgstr ""
@@ -82,11 +94,19 @@ msgstr ""
 msgid "Custom Mailchimp FROM name for this campaign"
 msgstr ""
 
-#: ./interfaces.py:64
+#: ./portlet/subscribe.py:94
+msgid "Edit MailChimp Portlet"
+msgstr ""
+
+#: ./interfaces.py:48
+msgid "Email address"
+msgstr ""
+
+#: ./interfaces.py:86
 msgid "Email from address"
 msgstr ""
 
-#: ./interfaces.py:71
+#: ./interfaces.py:93
 msgid "Email from name"
 msgstr ""
 
@@ -110,7 +130,19 @@ msgstr ""
 msgid "Last camapaign"
 msgstr ""
 
-#: ./interfaces.py:51
+#: ./interfaces.py:62
+msgid "List ID"
+msgstr ""
+
+#: ./interfaces.py:55
+msgid "Mail format"
+msgstr ""
+
+#: ./portlet/subscribe.py:49
+msgid "MailChimp"
+msgstr ""
+
+#: ./interfaces.py:73
 msgid "MailChimp API Key"
 msgstr ""
 
@@ -130,8 +162,12 @@ msgstr ""
 msgid "Mailchimp campaign created."
 msgstr ""
 
-#: ./interfaces.py:93
+#: ./interfaces.py:115
 msgid "Mailchimp slot name"
+msgstr ""
+
+#: ./portlet/z3cformhelpers.py:65
+msgid "Modify portlet"
 msgstr ""
 
 #: ./profiles/default/controlpanel.xml
@@ -151,6 +187,15 @@ msgstr ""
 msgid "RedTurtle monkey campaign configuration"
 msgstr ""
 
+#: ./portlet/subscribe.py:34
+msgid "Select list to subscribe to."
+msgstr ""
+
+#: ./browser/newsletter.py:34
+#: ./portlet/subscribe.py:68
+msgid "Subscribe to newsletter"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:105
 msgid "This field will be used as a campaign content."
 msgstr ""
@@ -159,8 +204,20 @@ msgstr ""
 msgid "This field will be used as campaign number (ie. Number 7 - February 2013)."
 msgstr ""
 
+#: ./portlet/subscribe.py:82
+msgid "This portlet displays a subscription form for a MailChimp newsletter."
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:93
 msgid "This title will be used as a campaign title as well as campaign subject."
+msgstr ""
+
+#: ./portlet/subscribe.py:29
+msgid "Title"
+msgstr ""
+
+#: ./portlet/subscribe.py:30
+msgid "Title of the portlet"
 msgstr ""
 
 #: ./browser/campaign.py:118
@@ -173,6 +230,10 @@ msgstr ""
 
 #: ./browser/campaign.py:33
 msgid "We have problems processing your request. Not items found."
+msgstr ""
+
+#: ./browser/newsletter.py:126
+msgid "We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you."
 msgstr ""
 
 #: ./browser/campaign_wizard.pt:14
@@ -196,23 +257,53 @@ msgid "header_title"
 msgstr ""
 
 #. Default: "Enter in your MailChimp key here (.e.g. '8b785dcabe4b5aa24ef84201ea7dcded-us4'). Log into mailchimp.com, go to account -> extras -> API Keys & Authorized Apps and copy the API Key to this field."
-#: ./interfaces.py:52
+#: ./interfaces.py:74
 msgid "help_api_key"
 msgstr ""
 
+#. Default: "Please enter your email address."
+#: ./interfaces.py:49
+msgid "help_email"
+msgstr ""
+
 #. Default: "Please enter FROM email address."
-#: ./interfaces.py:65
+#: ./interfaces.py:87
 msgid "help_from_email"
 msgstr ""
 
 #. Default: "Please enter FROM email name."
-#: ./interfaces.py:72
+#: ./interfaces.py:94
 msgid "help_from_name"
 msgstr ""
 
 #. Default: "Campaign's items"
 #: ./content/campaign.py:57
 msgid "label_campaign_items"
+msgstr ""
+
+#. Default: "Cancel"
+#: ./portlet/z3cformhelpers.py:50
+msgid "label_cancel"
+msgstr ""
+
+#. Default: "Save"
+#: ./portlet/z3cformhelpers.py:39
+msgid "label_save"
+msgstr ""
+
+#. Default: "Could not subscribe to newsletter. Please contact the site administrator: '${error}'"
+#: ./browser/newsletter.py:112
+msgid "mailchimp_error_msg"
+msgstr ""
+
+#. Default: "Could not subscribe to newsletter. The email '${email}' is already subscribed."
+#: ./browser/newsletter.py:84
+msgid "mailchimp_error_msg_already_subscribed"
+msgstr ""
+
+#. Default: "Could not subscribe to newsletter. The email '${email}' has been banned."
+#: ./browser/newsletter.py:98
+msgid "mailchimp_error_msg_banned"
 msgstr ""
 
 #: ./slots/generic.py:14
@@ -225,5 +316,10 @@ msgstr "Na pierwszej stronie"
 
 #: ./slots/generic.py:21
 msgid "preheader_content"
+msgstr ""
+
+#. Default: "Subscribe"
+#: ./browser/newsletter.py:53
+msgid "subscribe_to_newsletter_button"
 msgstr ""
 

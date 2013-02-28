@@ -43,5 +43,8 @@
   <utility component=".vocabularies.available_slots"
            name="redturtle.monkey.vocabularies.AvailableSlots"
            provides="zope.schema.interfaces.IVocabularyFactory" />
+  <utility component=".vocabularies.email_type"
+           name="redturtle.monkey.vocabularies.EmailType"
+           provides="zope.schema.interfaces.IVocabularyFactory" />
 
 </configure>

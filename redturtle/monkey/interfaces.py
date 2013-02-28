@@ -42,6 +42,28 @@ def validate_email(value):
     return True
 
 
+class INewsletterSubscribe(Interface):
+
+    email = schema.TextLine(
+        title=_(u"Email address"),
+        description=_(u"help_email",
+                      default=u"Please enter your email address."),
+        required=True,
+        constraint=validate_email)
+
+    email_type = schema.Choice(
+        title=_(u"Mail format"),
+        vocabulary="redturtle.monkey.vocabularies.EmailType",
+        default="text",
+        required=False,
+    )
+
+    list_id = schema.TextLine(
+        title=_(u"List ID"),
+        required=True
+    )
+
+
 class IMonkeySettings(Interface):
     """Global mailchimp settings. This describes records stored in the
     configuration registry and obtainable via plone.registry.
