@@ -6,7 +6,6 @@ from postmonkey import MailChimpException
 from zope.interface import Invalid
 from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.component.hooks import getSite
 from zope.component import getUtility
 
 from z3c.form import form, field, button
@@ -129,8 +128,7 @@ class NewsletterSubscriberForm(extensible.ExtensibleForm, form.Form):
                 u"inside the email we just send you."),
                 type="info"
             )
-            portal = getSite()
-            self.request.response.redirect(portal.absolute_url())
+            self.request.response.redirect(self.context.absolute_url())
 
 
 NewsletterView = wrap_form(NewsletterSubscriberForm)
