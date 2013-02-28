@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./portlet/subscribe.py:81
+#: ./portlet/subscribe.py:98
 msgid "Add MailChimp Portlet"
 msgstr ""
 
@@ -94,7 +94,15 @@ msgstr ""
 msgid "Custom Mailchimp FROM name for this campaign"
 msgstr ""
 
-#: ./portlet/subscribe.py:94
+#: ./portlet/subscribe.py:40
+msgid "Custom css"
+msgstr ""
+
+#: ./portlet/subscribe.py:42
+msgid "Custom css class for portlet wrapper"
+msgstr ""
+
+#: ./portlet/subscribe.py:109
 msgid "Edit MailChimp Portlet"
 msgstr ""
 
@@ -102,11 +110,11 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: ./interfaces.py:86
+#: ./interfaces.py:88
 msgid "Email from address"
 msgstr ""
 
-#: ./interfaces.py:93
+#: ./interfaces.py:95
 msgid "Email from name"
 msgstr ""
 
@@ -130,7 +138,7 @@ msgstr ""
 msgid "Last camapaign"
 msgstr ""
 
-#: ./interfaces.py:62
+#: ./interfaces.py:64
 msgid "List ID"
 msgstr ""
 
@@ -138,11 +146,11 @@ msgstr ""
 msgid "Mail format"
 msgstr ""
 
-#: ./portlet/subscribe.py:49
+#: ./portlet/subscribe.py:61
 msgid "MailChimp"
 msgstr ""
 
-#: ./interfaces.py:73
+#: ./interfaces.py:75
 msgid "MailChimp API Key"
 msgstr ""
 
@@ -162,7 +170,7 @@ msgstr ""
 msgid "Mailchimp campaign created."
 msgstr ""
 
-#: ./interfaces.py:115
+#: ./interfaces.py:117
 msgid "Mailchimp slot name"
 msgstr ""
 
@@ -178,6 +186,10 @@ msgstr ""
 msgid "Office information portlet"
 msgstr ""
 
+#: ./browser/newsletter_subscribed.pt:16
+msgid "Please Confirm Subscription"
+msgstr ""
+
 #: ./slots/main-body.pt:4
 #: ./slots/main-primopiano.pt:4
 msgid "Read more"
@@ -191,9 +203,17 @@ msgstr ""
 msgid "Select list to subscribe to."
 msgstr ""
 
-#: ./browser/newsletter.py:34
-#: ./portlet/subscribe.py:68
+#: ./browser/newsletter.py:33
+#: ./portlet/subscribe.py:81
 msgid "Subscribe to newsletter"
+msgstr ""
+
+#: ./portlet/subscribe.py:45
+msgid "Text"
+msgstr ""
+
+#: ./portlet/subscribe.py:46
+msgid "The text to render"
 msgstr ""
 
 #: ./browser/campaign_wizard.pt:105
@@ -204,7 +224,7 @@ msgstr ""
 msgid "This field will be used as campaign number (ie. Number 7 - February 2013)."
 msgstr ""
 
-#: ./portlet/subscribe.py:82
+#: ./portlet/subscribe.py:99
 msgid "This portlet displays a subscription form for a MailChimp newsletter."
 msgstr ""
 
@@ -232,7 +252,7 @@ msgstr ""
 msgid "We have problems processing your request. Not items found."
 msgstr ""
 
-#: ./browser/newsletter.py:126
+#: ./browser/newsletter.py:125
 msgid "We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you."
 msgstr ""
 
@@ -257,7 +277,7 @@ msgid "header_title"
 msgstr ""
 
 #. Default: "Enter in your MailChimp key here (.e.g. '8b785dcabe4b5aa24ef84201ea7dcded-us4'). Log into mailchimp.com, go to account -> extras -> API Keys & Authorized Apps and copy the API Key to this field."
-#: ./interfaces.py:74
+#: ./interfaces.py:76
 msgid "help_api_key"
 msgstr ""
 
@@ -266,13 +286,18 @@ msgstr ""
 msgid "help_email"
 msgstr ""
 
+#. Default: "Please choose type of newsletter you wish to receive."
+#: ./interfaces.py:57
+msgid "help_email_type"
+msgstr ""
+
 #. Default: "Please enter FROM email address."
-#: ./interfaces.py:87
+#: ./interfaces.py:89
 msgid "help_from_email"
 msgstr ""
 
 #. Default: "Please enter FROM email name."
-#: ./interfaces.py:94
+#: ./interfaces.py:96
 msgid "help_from_name"
 msgstr ""
 
@@ -292,17 +317,17 @@ msgid "label_save"
 msgstr ""
 
 #. Default: "Could not subscribe to newsletter. Please contact the site administrator: '${error}'"
-#: ./browser/newsletter.py:112
+#: ./browser/newsletter.py:111
 msgid "mailchimp_error_msg"
 msgstr ""
 
 #. Default: "Could not subscribe to newsletter. The email '${email}' is already subscribed."
-#: ./browser/newsletter.py:84
+#: ./browser/newsletter.py:83
 msgid "mailchimp_error_msg_already_subscribed"
 msgstr ""
 
 #. Default: "Could not subscribe to newsletter. The email '${email}' has been banned."
-#: ./browser/newsletter.py:98
+#: ./browser/newsletter.py:97
 msgid "mailchimp_error_msg_banned"
 msgstr ""
 
@@ -319,7 +344,7 @@ msgid "preheader_content"
 msgstr ""
 
 #. Default: "Subscribe"
-#: ./browser/newsletter.py:53
+#: ./browser/newsletter.py:52
 msgid "subscribe_to_newsletter_button"
 msgstr ""
 
