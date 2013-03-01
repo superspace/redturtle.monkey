@@ -333,7 +333,7 @@ msgstr "Non è possibile iscriversi a questa newsletter. L'email '${email}' è s
 
 #: ./slots/generic.py:14
 msgid "main_body"
-msgstr "corpo"
+msgstr "elenco base"
 
 #: ./slots/generic.py:7
 msgid "main_primopiano"
