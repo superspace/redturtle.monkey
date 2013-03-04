@@ -7,14 +7,6 @@
 
     <metal:content-core fill-slot="content-core">
     <metal:body_macro metal:define-macro="body" tal:define="lc context/@@last_campaign">
-    <br/>
-    <div class="field">
-      <label class="formQuestion"><span i18n:translate="">MailChimp archive</span>:</label>
-      <br>
-      <span>
-        <a target="_blank" href="https://us6.admin.mailchimp.com/campaigns/">https://us6.admin.mailchimp.com/campaigns/</a>
-      </span>
-    </div>
     <div class="field" tal:condition="lc">
       <label class="formQuestion"><span i18n:translate="">Last camapaign</span>:</label>
       <br/>
