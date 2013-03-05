@@ -22,8 +22,8 @@ class PreHeaderContent(Slot):
     template = ViewPageTemplateFile("preheader_content.pt")
 
     def render(self, objs=None, **kw):
-        if kw.get('description'):
-            return self.template(description=kw['description'])
+        if kw.get('campaign_description'):
+            return self.template(description=kw['campaign_description'])
 
 
 class CampaignTitle(Slot):
@@ -31,8 +31,8 @@ class CampaignTitle(Slot):
     template = ViewPageTemplateFile("campaign-title.pt")
 
     def render(self, objs=None, **kw):
-        if kw.get('title'):
-            return self.template(title=kw['title'])
+        if kw.get('campaign_title'):
+            return self.template(title=kw['campaign_title'])
 
 
 class HeaderNumber(Slot):
@@ -40,8 +40,8 @@ class HeaderNumber(Slot):
     template = ViewPageTemplateFile("header-number.pt")
 
     def render(self, objs=None, **kw):
-        if kw.get('number'):
-            return self.template(number=kw['number'])
+        if kw.get('campaign_number'):
+            return self.template(number=kw['campaign_number'])
 
 
 class HeaderTitle(Slot):
@@ -49,5 +49,5 @@ class HeaderTitle(Slot):
     template = ViewPageTemplateFile("header-title.pt")
 
     def render(self, objs=None, **kw):
-        if kw.get('description'):
-            return self.template(title=kw['description'])
+        if kw.get('campaign_description'):
+            return self.template(description=kw['campaign_description'])
