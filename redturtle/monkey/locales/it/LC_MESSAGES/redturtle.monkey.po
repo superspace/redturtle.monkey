@@ -42,6 +42,10 @@ msgstr "Email del mittente delle campagne"
 msgid "Campaign FROM name"
 msgstr "Nome del mittente delle campagne"
 
+#: ./profiles/default/portlets.xml
+msgid "Campaign configurator add items to"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:99
 msgid "Campaign description"
 msgstr "Descrizione della campagna"
@@ -102,7 +106,7 @@ msgstr "CSS personalizzato"
 msgid "Custom css class for portlet wrapper"
 msgstr "Classe CSS personalizzata per la portlet"
 
-#: ./portlet/subscribe.py:109
+#: ./portlet/subscribe.py:110
 msgid "Edit MailChimp Portlet"
 msgstr "Modifica la portlet MailChimp"
 
@@ -134,7 +138,7 @@ msgstr "Elementi aggiunti alla campagna."
 msgid "Item removed from campaign."
 msgstr "Elementi rimossi dalla campagna."
 
-#: ./skins/redturtle.monkey/campaign_view.pt:19
+#: ./skins/redturtle.monkey/campaign_view.pt:11
 msgid "Last camapaign"
 msgstr "Ultima campagna inviata"
 
@@ -153,10 +157,6 @@ msgstr "MailChimp"
 #: ./interfaces.py:75
 msgid "MailChimp API Key"
 msgstr "API key MailChimp"
-
-#: ./skins/redturtle.monkey/campaign_view.pt:12
-msgid "MailChimp archive"
-msgstr "Archivio di MailChimp"
 
 #: ./browser/controlpanel.py:19
 msgid "MailChimp settings"
@@ -264,7 +264,7 @@ msgstr "Non puoi far partire il wizard di configurazione. La tua campagna non co
 msgid "campaign_title"
 msgstr "Titolo della campagna"
 
-#: ./skins/redturtle.monkey/campaign_view.pt:22
+#: ./skins/redturtle.monkey/campaign_view.pt:14
 msgid "created at"
 msgstr "Creato il"
 

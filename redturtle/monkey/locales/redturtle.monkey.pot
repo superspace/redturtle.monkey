@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-28 16:04+0000\n"
+"POT-Creation-Date: 2013-03-07 09:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,10 @@ msgstr ""
 
 #: ./content/campaign.py:41
 msgid "Campaign FROM name"
+msgstr ""
+
+#: ./profiles/default/portlets.xml
+msgid "Campaign configurator add items to"
 msgstr ""
 
 #: ./browser/campaign_wizard.pt:99
@@ -109,7 +113,7 @@ msgstr ""
 msgid "Custom css class for portlet wrapper"
 msgstr ""
 
-#: ./portlet/subscribe.py:109
+#: ./portlet/subscribe.py:110
 msgid "Edit MailChimp Portlet"
 msgstr ""
 
@@ -141,7 +145,7 @@ msgstr ""
 msgid "Item removed from campaign."
 msgstr ""
 
-#: ./skins/redturtle.monkey/campaign_view.pt:19
+#: ./skins/redturtle.monkey/campaign_view.pt:11
 msgid "Last camapaign"
 msgstr ""
 
@@ -159,10 +163,6 @@ msgstr ""
 
 #: ./interfaces.py:75
 msgid "MailChimp API Key"
-msgstr ""
-
-#: ./skins/redturtle.monkey/campaign_view.pt:12
-msgid "MailChimp archive"
 msgstr ""
 
 #: ./browser/controlpanel.py:19
@@ -271,7 +271,7 @@ msgstr ""
 msgid "campaign_title"
 msgstr ""
 
-#: ./skins/redturtle.monkey/campaign_view.pt:22
+#: ./skins/redturtle.monkey/campaign_view.pt:14
 msgid "created at"
 msgstr ""
 

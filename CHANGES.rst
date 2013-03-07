@@ -4,7 +4,7 @@ Changelog
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- translation fixes [amleczko]
 
 
 1.0 (2013-03-05)
