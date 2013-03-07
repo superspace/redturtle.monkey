@@ -31,6 +31,7 @@ setup(name='redturtle.monkey',
           'plone.app.portlets',
           'plone.app.registry',
           'postmonkey',
+          'jarn.jsi18n',
       ],
       extras_require={
           'test': [

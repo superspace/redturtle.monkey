@@ -14,7 +14,7 @@
           Portal status message
         </div>
         <h1 i18n:translate="">Please Confirm Subscription</h1>
-        <div class="documentDescription">We need to confirm your email address. Please check your mailbox for the confirmation letter.</div>
+        <div class="documentDescription" i18n:translate="">We need to confirm your email address. Please check your mailbox for the confirmation letter.</div>
     </metal:body_macro>
     </metal:content-core>
   </body>

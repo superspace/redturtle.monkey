@@ -2,15 +2,15 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  lang="en"
   metal:use-macro="context/main_template/macros/master"
+  lang="en"
   i18n:domain="redturtle.monkey">
   <body>
     <metal:content-core fill-slot="body">
     <tal:notallowed condition="not: view/available">
         <h1 class="documentFirstHeading" tal:content="context/title_or_id">Title</h1>
         <dl class="portalMessage info">
-              <dt>Info</dt>
+              <dt i18n:translate="">Info</dt>
               <dd i18n:translate="">You cannot start wizard configuration. Your campaign doesn't have any items and/or your
               mailchimp API configuration is wrong.
               </dd>
@@ -48,8 +48,8 @@
                       <input type="checkbox" class="toggle-checkbox" checked="1">
                       </div>
                     </th>
-                  <th>Item</th>
-                  <th>Slot</th>
+                  <th i18n:translate="">Item</th>
+                  <th i18n:translate="">Slot</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,11 +117,13 @@
         </div>
         <div class="field">
           <label for="template">
+            <span tal:omit-tag="" i18n:translate="">
             Campaign template
+            </span>
             <span class="fieldRequired" title="Required">
               (Required)
             </span>
-            <span class="formHelp">Select the template that will be used for this campaign.</span>
+            <span class="formHelp" i18n:translate="">Select the template that will be used for this campaign.</span>
           </label>
           <div class="widget">
             <div class="value">
@@ -135,11 +137,13 @@
         </div>
         <div class="field">
           <label for="list">
+            <span tal:omit-tag="" i18n:translate="">
             Recipient list
+            </span>
             <span class="fieldRequired" title="Required">
               (Required)
             </span>
-            <span class="formHelp">Select the recipient list.</span>
+            <span class="formHelp" i18n:translate="">Select the recipient list.</span>
           </label>
           <div class="widget">
             <div class="value">
@@ -155,10 +159,16 @@
     </div>
   </div>
   <!-- End SmartWizard Content -->      
-</form> 
+</form>
+
+<span i18n:translate="Previous" tal:omit-tag=""></span>
+<span i18n:translate="Next" tal:omit-tag=""></span>
+<span i18n:translate="Send" tal:omit-tag=""></span>
 
     <script type="text/javascript">
       $(document).ready(function(){
+           jarn.i18n.loadCatalog('redturtle.monkey');
+           _ = jarn.i18n.MessageFactory('redturtle.monkey');
            $('.toggle-checkbox').click(function(){ 
               var $checkbox = $(this).closest('table').find('tbody :checkbox');
                   $checkbox.attr('checked', $(this).attr('checked'));
@@ -169,7 +179,9 @@
                 onLeaveStep:leaveAStepCallback,
                 onFinish:onFinishCallback,
                 enableFinishButton:false,
-                labelFinish:'Send'
+                labelNext: _('Next'), // label for Next button
+                labelPrevious: _('Previous'), // label for Previous button
+                labelFinish: _('Send')
                 }
            );
            function leaveAStepCallback(obj){

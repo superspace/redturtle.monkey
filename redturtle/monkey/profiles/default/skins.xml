@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- This file holds the setup configuration for the portal_skins tool -->
-
+<object name="portal_skins" meta_type="Plone Skins Tool">
 <!-- Change the value of these parameters to modify portal_skins behavior:
      - allow_any: change it to True if you want users to be able to select the
        skin to use from their personal preferences management page. In the
@@ -9,8 +9,6 @@
        persist indefinitely. In the ZMI, this value is known as 'Skin Cookie
        persistence'.
        -->
-<object name="portal_skins" allow_any="False" cookie_persistence="False"
-   default_skin="redturtle.monkey">
 
  <!-- This list registers the folders that are stored in the skins directory
       of your product (on the filesystem) as Filesystem Directory Views within
@@ -33,9 +31,8 @@
        Note: insert-before (and -after) accepts the value "*" which means
        "all".
        -->
- <skin-path name="redturtle.monkey" based-on="Sunburst Theme">
-  <layer name="redturtle.monkey"
-     insert-after="custom"/>
+ <skin-path name="*">
+  <layer name="redturtle.monkey" insert-after="custom"/>
  </skin-path>
 
 </object>

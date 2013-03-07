@@ -18,8 +18,16 @@ msgstr ""
 msgid "Add MailChimp Portlet"
 msgstr ""
 
-#: ./portlet/addtocampaign.py:25
+#: ./portlet/addtocampaign.py:26
 msgid "Add item to campaign"
+msgstr ""
+
+#: ./browser/controlpanel.pt:83
+msgid "Address 1:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:87
+msgid "Address 2:"
 msgstr ""
 
 #: ./portlet/subscribe.py:33
@@ -62,6 +70,10 @@ msgstr ""
 msgid "Campaign number"
 msgstr ""
 
+#: ./browser/campaign_wizard.pt:120
+msgid "Campaign template"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:87
 msgid "Campaign title"
 msgstr ""
@@ -78,12 +90,24 @@ msgstr ""
 msgid "Choose items for mailchimp"
 msgstr ""
 
+#: ./browser/controlpanel.pt:99
+msgid "City:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:67
+msgid "Company:"
+msgstr ""
+
 #: ./portlet/z3cformhelpers.py:21
 msgid "Configure portlet"
 msgstr ""
 
 #: ./browser/campaign.py:138
 msgid "Couldn't generate campaign items."
+msgstr ""
+
+#: ./browser/controlpanel.pt:103
+msgid "Country:"
 msgstr ""
 
 #: ./content/campaign.py:26
@@ -106,6 +130,10 @@ msgstr ""
 msgid "Custom css class for portlet wrapper"
 msgstr ""
 
+#: ./browser/controlpanel.pt:51
+msgid "E-mails left:"
+msgstr ""
+
 #: ./portlet/subscribe.py:110
 msgid "Edit MailChimp Portlet"
 msgstr ""
@@ -122,12 +150,36 @@ msgstr ""
 msgid "Email from name"
 msgstr ""
 
+#: ./browser/controlpanel.pt:79
+msgid "Email:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:115
+msgid "Fax:"
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:34
 msgid "Fill in campaign details"
 msgstr ""
 
+#: ./browser/controlpanel.pt:71
+msgid "First name:"
+msgstr ""
+
+#: ./browser/campaign_created.pt:14
+msgid "Go to Mailchimp"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:13
+msgid "Info"
+msgstr ""
+
 #: ./interfaces.py:32
 msgid "Invalid email address"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:51
+msgid "Item"
 msgstr ""
 
 #: ./browser/campaign.py:43
@@ -138,8 +190,20 @@ msgstr ""
 msgid "Item removed from campaign."
 msgstr ""
 
+#: ./browser/controlpanel.pt:41
+msgid "Key"
+msgstr ""
+
 #: ./skins/redturtle.monkey/campaign_view.pt:11
 msgid "Last camapaign"
+msgstr ""
+
+#: ./browser/controlpanel.pt:59
+msgid "Last login:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:75
+msgid "Last name:"
 msgstr ""
 
 #: ./interfaces.py:64
@@ -158,6 +222,10 @@ msgstr ""
 msgid "MailChimp API Key"
 msgstr ""
 
+#: ./browser/controlpanel.pt:36
+msgid "MailChimp Account"
+msgstr ""
+
 #: ./browser/controlpanel.py:19
 msgid "MailChimp settings"
 msgstr ""
@@ -174,6 +242,10 @@ msgstr ""
 msgid "Mailchimp slot name"
 msgstr ""
 
+#: ./browser/controlpanel.pt:55
+msgid "Member since:"
+msgstr ""
+
 #: ./portlet/z3cformhelpers.py:65
 msgid "Modify portlet"
 msgstr ""
@@ -182,17 +254,37 @@ msgstr ""
 msgid "Monkey"
 msgstr ""
 
-#: ./portlet/addtocampaign.py:57
+#: ./browser/campaign_wizard.pt:165
+msgid "Next"
+msgstr ""
+
+#: ./portlet/addtocampaign.py:63
 msgid "Office information portlet"
+msgstr ""
+
+#: ./browser/controlpanel.pt:111
+msgid "Phone:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:63
+msgid "Plan type:"
 msgstr ""
 
 #: ./browser/newsletter_subscribed.pt:16
 msgid "Please Confirm Subscription"
 msgstr ""
 
+#: ./browser/campaign_wizard.pt:164
+msgid "Previous"
+msgstr ""
+
 #: ./slots/main-body.pt:4
 #: ./slots/main-primopiano.pt:4
 msgid "Read more"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:140
+msgid "Recipient list"
 msgstr ""
 
 #: ./profiles/default/types/Campaign.xml
@@ -201,6 +293,34 @@ msgstr ""
 
 #: ./portlet/subscribe.py:34
 msgid "Select list to subscribe to."
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:146
+msgid "Select the recipient list."
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:126
+msgid "Select the template that will be used for this campaign."
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:166
+msgid "Send"
+msgstr ""
+
+#: ./browser/controlpanel.pt:18
+msgid "Site Setup"
+msgstr ""
+
+#: ./browser/campaign_wizard.pt:52
+msgid "Slot"
+msgstr ""
+
+#: ./browser/controlpanel.pt:32
+msgid "Standard"
+msgstr ""
+
+#: ./browser/controlpanel.pt:95
+msgid "State:"
 msgstr ""
 
 #: ./browser/newsletter.py:33
@@ -240,12 +360,24 @@ msgstr ""
 msgid "Title of the portlet"
 msgstr ""
 
+#: ./browser/controlpanel.pt:107
+msgid "URL:"
+msgstr ""
+
 #: ./browser/campaign.py:118
 msgid "Unknown campaign title"
 msgstr ""
 
 #: ./portlet/addtocampaign.pt:26
 msgid "Update"
+msgstr ""
+
+#: ./browser/controlpanel.pt:47
+msgid "Username:"
+msgstr ""
+
+#: ./browser/controlpanel.pt:42
+msgid "Value"
 msgstr ""
 
 #: ./browser/campaign.py:33
@@ -256,8 +388,16 @@ msgstr ""
 msgid "We have to confirm your email address. In order to finish the newsletter subscription, click on the link inside the email we just send you."
 msgstr ""
 
+#: ./browser/newsletter_subscribed.pt:17
+msgid "We need to confirm your email address. Please check your mailbox for the confirmation letter."
+msgstr ""
+
 #: ./browser/campaign_wizard.pt:14
 msgid "You cannot start wizard configuration. Your campaign doesn't have any items and/or your mailchimp API configuration is wrong."
+msgstr ""
+
+#: ./browser/controlpanel.pt:91
+msgid "Zip:"
 msgstr ""
 
 #: ./slots/generic.py:30

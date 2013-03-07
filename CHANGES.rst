@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - translation fixes [amleczko]
+- portlet hidden for anonymous [amleczko]
 
 
 1.0 (2013-03-05)

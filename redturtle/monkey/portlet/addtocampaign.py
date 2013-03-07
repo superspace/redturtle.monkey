@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from zope.interface import Interface
+from zope.component import getMultiAdapter
 from plone.app.portlets.portlets import base
 from plone.app.uuid.utils import uuidToObject
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -43,7 +44,12 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return True
+        portal_state = getMultiAdapter((self.context, self.request),
+                                        name=u'plone_portal_state')
+        if portal_state.anonymous():
+            return False
+        else:
+            return True
 
 
 class Assignment(base.Assignment):
