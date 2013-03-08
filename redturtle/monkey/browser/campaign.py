@@ -6,6 +6,7 @@ from zope.component import subscribers
 from zope.annotation.interfaces import IAnnotations
 from zope.schema.interfaces import IVocabularyFactory
 from Products.ATContentTypes.interfaces import IATTopic
+from Products.CMFCore.utils import getToolByName
 try:
     from plone.app.collection.interfaces import ICollection
     from plone.app.contentlisting.interfaces import IContentListingObject
@@ -92,6 +93,7 @@ class CampaignWizard(BrowserView):
         """List all campaign items group by folderish/nonfolderish types."""
         items = self.context.getCampaign_items()
         result = {u'manual_items':[]}
+        wft = getToolByName(self.context, 'portal_workflow')
         def walk(items, result, parent):
             for item in items:
                 collection = []
@@ -101,10 +103,20 @@ class CampaignWizard(BrowserView):
                     collection = item.queryCatalog(b_size=100, full_objects=True)
                 elif COLLECTION and ICollection.providedBy(item):
                     collection = item.getQuery()
+
                 if collection:
                     result[item.title_or_id()] = []
                     walk(collection, result, item.title_or_id())
                 else:
+                    # add only published items
+                    if wft.getInfoFor(item, "review_state") != "published":
+                        IStatusMessage(self.request).\
+                        add(_(u'Some of the items in your list are private. '
+                               'They were not included in the wizard - '
+                               'MailChimp supports only published content'),
+                            type='error')
+                        continue
+
                     result[parent].append({'uid': IUUID(item),
                                            'title': item.title_or_id()})
             return result

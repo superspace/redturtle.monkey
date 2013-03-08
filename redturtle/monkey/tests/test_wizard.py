@@ -3,6 +3,7 @@ import unittest2 as unittest
 from zope.component import getMultiAdapter
 from plone.app.testing import logout, TEST_USER_ID, setRoles
 from plone.uuid.interfaces import IUUID
+from Products.CMFCore.utils import getToolByName
 
 from redturtle.monkey.testing import \
     REDTURTLE_MONKEY_INTEGRATION_TESTING
@@ -16,6 +17,9 @@ class TestMonkeyWizard(unittest.TestCase):
         self.request = self.layer['request']
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.portal_workflow.setChainForPortalTypes(
+            ['Event', 'Folder', 'Collection'],
+            ['simple_publication_workflow'])
         self.portal.invokeFactory(type_name='Folder', id='f1')
         self.folder = self.portal['f1']
         self.folder.invokeFactory(type_name='Campaign', id='c1')
@@ -122,6 +126,7 @@ class TestMonkeyWizard(unittest.TestCase):
         self.assertTrue('<h2>Event 1</h2>' in content['html_main_body'])
 
     def test_monkey_wizard_list_campaign_items(self):
+        wft = getToolByName(self.portal, 'portal_workflow')
         view = getMultiAdapter((self.campaign, self.request),
                                name="campaign_wizard")
 
@@ -138,8 +143,15 @@ class TestMonkeyWizard(unittest.TestCase):
                                          IUUID(self.folder.e2)])
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
-        # Now we should have those two event's in manual_items slot
-        self.assertEqual(len(view.list_campaign_items()['manual_items']), 2)
+        # Because the related items are private they shouldn't appear
+        # in the campaign items
+        self.assertEqual(view.list_campaign_items()['manual_items'], [])
+
+        # Now let's publish one
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        wft.doActionFor(self.folder.e1, "publish")
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+        self.assertEqual(len(view.list_campaign_items()['manual_items']), 1)
 
         # Finally let's check the topic handling
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -152,6 +164,7 @@ class TestMonkeyWizard(unittest.TestCase):
             'v': 'Event',
         }]
         self.collection.setQuery(query)
+        wft.doActionFor(self.collection, "publish")
         self.campaign.setCampaign_items([IUUID(self.collection),
                                          IUUID(self.folder.e1),
                                          IUUID(self.folder.e2)])
@@ -160,5 +173,5 @@ class TestMonkeyWizard(unittest.TestCase):
         # Now we should have those two sections:
         items = view.list_campaign_items()
         self.assertEqual(len(items.keys()), 2)
-        self.assertEqual(len(items[u'My collection']), 2)
-        self.assertEqual(len(items['manual_items']), 2)
+        self.assertEqual(len(items[u'My collection']), 1)
+        self.assertEqual(len(items['manual_items']), 1)
