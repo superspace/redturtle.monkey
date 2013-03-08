@@ -38,6 +38,7 @@ setup(name='redturtle.monkey',
           'plone.app.testing',
           'mocker',
           'plone.mocktestcase',
+          'jarn.jsi18n',
           ],
       },
       entry_points="""
