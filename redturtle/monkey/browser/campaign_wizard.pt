@@ -15,8 +15,13 @@
               mailchimp API configuration is wrong.
               </dd>
         </dl>
-    </tal:notallowed>
-<form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard" tal:condition="view/available">
+        </tal:notallowed>
+        <form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard"
+           tal:define="sections view/list_campaign_items"
+          tal:condition="view/available">
+<div metal:use-macro="context/global_statusmessage/macros/portal_message">
+  Portal status message
+</div>
   <!-- Tabs -->
   <div id="wizard" class="swMain">
     <ul>
@@ -37,8 +42,9 @@
     </ul>
     <div id="step-1"> 
       <h2 class="StepTitle" i18n:translate="">Campaign items</h2>
-      <div id="content" tal:define="sections view/list_campaign_items">
-        <fieldset tal:repeat="section sections">
+      <div id="content">
+        <tal:sections repeat="section sections">
+        <fieldset tal:condition="python: sections[section]">
             <legend tal:content="section" i18n:translate=""></legend>
             <table class="listing nosort" id="rulesetMappingsTable">
               <thead>
@@ -76,7 +82,8 @@
                   </tr>
               </tbody>
             </table>
-         </fieldset>
+          </fieldset>
+          </tal:sections>
       </div>
     </div>
     <div id="step-2">

@@ -54,27 +54,27 @@ msgstr "Nome del mittente delle campagne"
 msgid "Campaign configurator add items to"
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:99
+#: ./browser/campaign_wizard.pt:106
 msgid "Campaign description"
 msgstr "Descrizione della campagna"
 
-#: ./browser/campaign_wizard.pt:33
+#: ./browser/campaign_wizard.pt:38
 msgid "Campaign details"
 msgstr "Dettagli della campagna"
 
-#: ./browser/campaign_wizard.pt:26
+#: ./browser/campaign_wizard.pt:31
 msgid "Campaign items"
 msgstr "Elementi della campagna"
 
-#: ./browser/campaign_wizard.pt:111
+#: ./browser/campaign_wizard.pt:118
 msgid "Campaign number"
 msgstr "Numero della campagna"
 
-#: ./browser/campaign_wizard.pt:120
+#: ./browser/campaign_wizard.pt:127
 msgid "Campaign template"
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:87
+#: ./browser/campaign_wizard.pt:94
 msgid "Campaign title"
 msgstr "Titolo della campagna"
 
@@ -86,7 +86,7 @@ msgstr "Wizard della Campagna"
 msgid "Choose campaign configurator:"
 msgstr "Scegli il configuratore della campagna"
 
-#: ./browser/campaign_wizard.pt:27
+#: ./browser/campaign_wizard.pt:32
 msgid "Choose items for mailchimp"
 msgstr "Scegli gli elementi per mailchimp"
 
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Configure portlet"
 msgstr "Configura la portlet"
 
-#: ./browser/campaign.py:138
+#: ./browser/campaign.py:151
 msgid "Couldn't generate campaign items."
 msgstr "Non posso generare elementi per la campagna"
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Fax:"
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:34
+#: ./browser/campaign_wizard.pt:39
 msgid "Fill in campaign details"
 msgstr "Inserisci i dettagli della campagna"
 
@@ -178,15 +178,15 @@ msgstr ""
 msgid "Invalid email address"
 msgstr "Email non valido"
 
-#: ./browser/campaign_wizard.pt:51
+#: ./browser/campaign_wizard.pt:57
 msgid "Item"
 msgstr ""
 
-#: ./browser/campaign.py:43
+#: ./browser/campaign.py:45
 msgid "Item added to campaign."
 msgstr "Elementi aggiunti alla campagna."
 
-#: ./browser/campaign.py:47
+#: ./browser/campaign.py:49
 msgid "Item removed from campaign."
 msgstr "Elementi rimossi dalla campagna."
 
@@ -234,7 +234,7 @@ msgstr "Impostazioni di MailChimp"
 msgid "Mailchimp campaign created!"
 msgstr "Campagna MailChimp creata!"
 
-#: ./browser/campaign.py:150
+#: ./browser/campaign.py:163
 msgid "Mailchimp campaign created."
 msgstr "Campagna MailChimp creata."
 
@@ -254,7 +254,7 @@ msgstr "Modifica portlet"
 msgid "Monkey"
 msgstr "Monkey"
 
-#: ./browser/campaign_wizard.pt:165
+#: ./browser/campaign_wizard.pt:173
 msgid "Next"
 msgstr "Avanti"
 
@@ -274,7 +274,7 @@ msgstr ""
 msgid "Please Confirm Subscription"
 msgstr "Per favore, conferma l'invio"
 
-#: ./browser/campaign_wizard.pt:164
+#: ./browser/campaign_wizard.pt:172
 msgid "Previous"
 msgstr "Indietro"
 
@@ -283,7 +283,7 @@ msgstr "Indietro"
 msgid "Read more"
 msgstr "Dettagli"
 
-#: ./browser/campaign_wizard.pt:140
+#: ./browser/campaign_wizard.pt:147
 msgid "Recipient list"
 msgstr ""
 
@@ -295,15 +295,15 @@ msgstr "Configurazione della campagna RedTurtle Monkey"
 msgid "Select list to subscribe to."
 msgstr "Seleziona la lista cui iscriversi."
 
-#: ./browser/campaign_wizard.pt:146
+#: ./browser/campaign_wizard.pt:153
 msgid "Select the recipient list."
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:126
+#: ./browser/campaign_wizard.pt:133
 msgid "Select the template that will be used for this campaign."
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:166
+#: ./browser/campaign_wizard.pt:174
 msgid "Send"
 msgstr "Invia"
 
@@ -311,8 +311,12 @@ msgstr "Invia"
 msgid "Site Setup"
 msgstr ""
 
-#: ./browser/campaign_wizard.pt:52
+#: ./browser/campaign_wizard.pt:58
 msgid "Slot"
+msgstr ""
+
+#: ./browser/campaign.py:115
+msgid "Some of the items in your list are private. They were not included in the wizard - MailChimp supports only published content."
 msgstr ""
 
 #: ./browser/controlpanel.pt:32
@@ -336,11 +340,11 @@ msgstr "Testo"
 msgid "The text to render"
 msgstr "Il testo da mostrare"
 
-#: ./browser/campaign_wizard.pt:105
+#: ./browser/campaign_wizard.pt:112
 msgid "This field will be used as a campaign content."
 msgstr "Questo campo verrà utilizzato come contenuto della campagna."
 
-#: ./browser/campaign_wizard.pt:114
+#: ./browser/campaign_wizard.pt:121
 msgid "This field will be used as campaign number (ie. Number 7 - February 2013)."
 msgstr "Questo campo verrà usato come numero della campagna (ad esempio: Numero 7 - Febbraio 2013)"
 
@@ -348,7 +352,7 @@ msgstr "Questo campo verrà usato come numero della campagna (ad esempio: Numero
 msgid "This portlet displays a subscription form for a MailChimp newsletter."
 msgstr "Questa portlet mostra il form d'iscrizione ad una newsletter MailChimp"
 
-#: ./browser/campaign_wizard.pt:93
+#: ./browser/campaign_wizard.pt:100
 msgid "This title will be used as a campaign title as well as campaign subject."
 msgstr "Questo titolo verrà usato come titolo e oggetto della campagna"
 
@@ -364,7 +368,7 @@ msgstr "Titolo della portlet"
 msgid "URL:"
 msgstr ""
 
-#: ./browser/campaign.py:118
+#: ./browser/campaign.py:131
 msgid "Unknown campaign title"
 msgstr "Titolo della campagna sconosciuto"
 
@@ -380,7 +384,7 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: ./browser/campaign.py:33
+#: ./browser/campaign.py:34
 msgid "We have problems processing your request. Not items found."
 msgstr "Abbiamo avuto problemi elaborando la tua richiesta. Nessun elemento trovato."
 

@@ -31,7 +31,8 @@ class AddItems(BrowserView):
         redirect_url = self.context.absolute_url()
         items = self.request.form.get('items',[])
         if not items:
-            IStatusMessage(self.request).add(_(u'We have problems processing your request. Not items found.'), type='error')
+            IStatusMessage(self.request).add(_(u'We have problems processing '
+                              'your request. Not items found.'), type='error')
             return self.request.RESPONSE.redirect(redirect_url)
 
         my_uid = IUUID(self.context)
@@ -113,7 +114,7 @@ class CampaignWizard(BrowserView):
                         IStatusMessage(self.request).\
                         add(_(u'Some of the items in your list are private. '
                                'They were not included in the wizard - '
-                               'MailChimp supports only published content'),
+                               'MailChimp supports only published content.'),
                             type='error')
                         continue
 
