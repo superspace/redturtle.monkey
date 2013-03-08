@@ -161,9 +161,11 @@
   <!-- End SmartWizard Content -->      
 </form>
 
-<span i18n:translate="Previous" tal:omit-tag=""></span>
-<span i18n:translate="Next" tal:omit-tag=""></span>
-<span i18n:translate="Send" tal:omit-tag=""></span>
+<span style="display:none">
+	<span i18n:translate="Previous"></span>
+	<span i18n:translate="Next"></span>
+	<span i18n:translate="Send"></span>
+</span>
 
     <script type="text/javascript">
       $(document).ready(function(){
