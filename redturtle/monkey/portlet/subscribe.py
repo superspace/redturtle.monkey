@@ -33,7 +33,7 @@ class IMailChimpPortlet(IPortletDataProvider):
         title=_(u'Available lists'),
         description=_(u'Select list to subscribe to.'),
         required=True,
-        vocabulary='redturtle.monkey.vocabularies.AvailableLists'
+        vocabulary='redturtle.monkey.vocabularies.AllCampaignLists'
         )
 
     custom_css = schema.TextLine(

@@ -4,7 +4,7 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- subscribe portlet now supports multi campaigns [amleczko]
 
 
 1.1 (2013-03-12)

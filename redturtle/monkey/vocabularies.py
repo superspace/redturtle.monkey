@@ -2,6 +2,7 @@ from zope.component import getUtility, queryMultiAdapter
 from zope.component import subscribers
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
+from Products.CMFCore.utils import getToolByName
 
 from redturtle.monkey.interfaces import IMonkeyLocator, IMailchimpSlot, IMailchimpSlotRenderer
 
@@ -14,6 +15,30 @@ def available_lists(context):
     return SimpleVocabulary([
         SimpleTerm(value=li['id'], title=li['name']) for li in lists]
     )
+
+def all_campaign_lists(context):
+    mailchimp = getUtility(IMonkeyLocator)
+    result = {}
+
+    # first for current context
+    lists = mailchimp.lists(campaign=context)
+    for li in lists:
+        result[li['id']] = SimpleTerm(value=li['id'],
+                                      title=li['name'])
+
+    # next for all campaigns
+    portal_catalog = getToolByName(context, 'portal_catalog')
+    brains = portal_catalog(portal_type='Campaign')
+    for brain in brains:
+        campaign = brain.getObject()
+        if not campaign:
+            continue
+        lists = mailchimp.lists(campaign=campaign)
+        for li in lists:
+            result[li['id']] = SimpleTerm(value=li['id'],
+                                          title='%s - %s' % (campaign.title_or_id(),
+                                                             li['name']))
+    return SimpleVocabulary(result.values())
 
 
 def available_templates(context):

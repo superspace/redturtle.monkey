@@ -1,3 +1,5 @@
+import random
+import string
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from plone.app.testing import PloneSandboxLayer
@@ -8,6 +10,9 @@ from plone.app.testing import FunctionalTesting
 from plone.testing import z2
 
 from redturtle.monkey.interfaces import IMonkeySettings
+
+def id_generator(size=10, chars=string.ascii_lowercase + string.digits):
+    return u''.join(random.choice(chars) for x in range(size))
 
 
 class RedturtleMonkey(PloneSandboxLayer):
@@ -28,13 +33,13 @@ class RedturtleMonkey(PloneSandboxLayer):
         mocker.result({
             u'total': 2,
             u'data': [{
-                    u'id': u'f6257645gs',
+                    u'id': id_generator(),
                     u'web_id': 625,
                     u'name': u'ACME Newsletter',
                     u'default_from_name': u'info@acme.com',
                 },
                 {
-                    u'id': u'f6267645gs',
+                    u'id': id_generator(),
                     u'web_id': 626,
                     u'name': u'ACME Newsletter 2',
                     u'default_from_name': u'info@acme.com',
