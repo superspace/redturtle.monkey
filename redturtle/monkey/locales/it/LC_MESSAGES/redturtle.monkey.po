@@ -24,11 +24,11 @@ msgstr "Aggiungi un elemento alla campagna"
 
 #: ./browser/controlpanel.pt:83
 msgid "Address 1:"
-msgstr ""
+msgstr "Indirizzo 1"
 
 #: ./browser/controlpanel.pt:87
 msgid "Address 2:"
-msgstr ""
+msgstr "Indirizzo 2"
 
 #: ./portlet/subscribe.py:33
 msgid "Available lists"
@@ -52,7 +52,7 @@ msgstr "Nome del mittente delle campagne"
 
 #: ./profiles/default/portlets.xml
 msgid "Campaign configurator add items to"
-msgstr ""
+msgstr "Aggiungi elementi alla Campagna"
 
 #: ./browser/campaign_wizard.pt:106
 msgid "Campaign description"
@@ -72,7 +72,7 @@ msgstr "Numero della campagna"
 
 #: ./browser/campaign_wizard.pt:127
 msgid "Campaign template"
-msgstr ""
+msgstr "Modello della campagna"
 
 #: ./browser/campaign_wizard.pt:94
 msgid "Campaign title"
@@ -92,11 +92,11 @@ msgstr "Scegli gli elementi per mailchimp"
 
 #: ./browser/controlpanel.pt:99
 msgid "City:"
-msgstr ""
+msgstr "Città:"
 
 #: ./browser/controlpanel.pt:67
 msgid "Company:"
-msgstr ""
+msgstr "Azienda:"
 
 #: ./portlet/z3cformhelpers.py:21
 msgid "Configure portlet"
@@ -108,7 +108,7 @@ msgstr "Non posso generare elementi per la campagna"
 
 #: ./browser/controlpanel.pt:103
 msgid "Country:"
-msgstr ""
+msgstr "Nazione:"
 
 #: ./content/campaign.py:26
 msgid "Custom Mailchimp API key for this campaign"
@@ -132,7 +132,7 @@ msgstr "Classe CSS personalizzata per la portlet"
 
 #: ./browser/controlpanel.pt:51
 msgid "E-mails left:"
-msgstr ""
+msgstr "Email ancora inviabili"
 
 #: ./portlet/subscribe.py:110
 msgid "Edit MailChimp Portlet"
@@ -152,11 +152,11 @@ msgstr "Nome del mittente"
 
 #: ./browser/controlpanel.pt:79
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: ./browser/controlpanel.pt:115
 msgid "Fax:"
-msgstr ""
+msgstr "Fax:"
 
 #: ./browser/campaign_wizard.pt:39
 msgid "Fill in campaign details"
@@ -164,15 +164,15 @@ msgstr "Inserisci i dettagli della campagna"
 
 #: ./browser/controlpanel.pt:71
 msgid "First name:"
-msgstr ""
+msgstr "Nome:"
 
 #: ./browser/campaign_created.pt:14
 msgid "Go to Mailchimp"
-msgstr ""
+msgstr "Vai a Mailchimp"
 
 #: ./browser/campaign_wizard.pt:13
 msgid "Info"
-msgstr ""
+msgstr "Informazioni"
 
 #: ./interfaces.py:32
 msgid "Invalid email address"
@@ -180,7 +180,7 @@ msgstr "Email non valido"
 
 #: ./browser/campaign_wizard.pt:57
 msgid "Item"
-msgstr ""
+msgstr "Elemento"
 
 #: ./browser/campaign.py:45
 msgid "Item added to campaign."
@@ -192,7 +192,7 @@ msgstr "Elementi rimossi dalla campagna."
 
 #: ./browser/controlpanel.pt:41
 msgid "Key"
-msgstr ""
+msgstr "Chiave (key)"
 
 #: ./skins/redturtle.monkey/campaign_view.pt:11
 msgid "Last camapaign"
@@ -200,11 +200,11 @@ msgstr "Ultima campagna inviata"
 
 #: ./browser/controlpanel.pt:59
 msgid "Last login:"
-msgstr ""
+msgstr "Ultimo login:"
 
 #: ./browser/controlpanel.pt:75
 msgid "Last name:"
-msgstr ""
+msgstr "Cognome:"
 
 #: ./interfaces.py:64
 msgid "List ID"
@@ -224,7 +224,7 @@ msgstr "API key MailChimp"
 
 #: ./browser/controlpanel.pt:36
 msgid "MailChimp Account"
-msgstr ""
+msgstr "Account Mailchimp"
 
 #: ./browser/controlpanel.py:19
 msgid "MailChimp settings"
@@ -244,7 +244,7 @@ msgstr "Nome dello slot MailChimp"
 
 #: ./browser/controlpanel.pt:55
 msgid "Member since:"
-msgstr ""
+msgstr "Iscritto dal:"
 
 #: ./portlet/z3cformhelpers.py:65
 msgid "Modify portlet"
@@ -264,11 +264,11 @@ msgstr "Portlet Ufficio informazioni"
 
 #: ./browser/controlpanel.pt:111
 msgid "Phone:"
-msgstr ""
+msgstr "Telefono:"
 
 #: ./browser/controlpanel.pt:63
 msgid "Plan type:"
-msgstr ""
+msgstr "Tipo di piano"
 
 #: ./browser/newsletter_subscribed.pt:16
 msgid "Please Confirm Subscription"
@@ -285,7 +285,7 @@ msgstr "Dettagli"
 
 #: ./browser/campaign_wizard.pt:147
 msgid "Recipient list"
-msgstr ""
+msgstr "Lista dei destinatari"
 
 #: ./profiles/default/types/Campaign.xml
 msgid "RedTurtle monkey campaign configuration"
@@ -297,11 +297,11 @@ msgstr "Seleziona la lista cui iscriversi."
 
 #: ./browser/campaign_wizard.pt:153
 msgid "Select the recipient list."
-msgstr ""
+msgstr "Seleziona la lista di destinatari."
 
 #: ./browser/campaign_wizard.pt:133
 msgid "Select the template that will be used for this campaign."
-msgstr ""
+msgstr "Seleziona il modello che verrà utilizzato per questa campagna."
 
 #: ./browser/campaign_wizard.pt:174
 msgid "Send"
@@ -309,23 +309,23 @@ msgstr "Invia"
 
 #: ./browser/controlpanel.pt:18
 msgid "Site Setup"
-msgstr ""
+msgstr "Impostazioni del sito"
 
 #: ./browser/campaign_wizard.pt:58
 msgid "Slot"
-msgstr ""
+msgstr "Slot nel modello"
 
 #: ./browser/campaign.py:115
 msgid "Some of the items in your list are private. They were not included in the wizard - MailChimp supports only published content."
-msgstr ""
+msgstr "Alcuni degli elementi nella lista sono privati. Non verranno inclusi nel wizard - Mailchimp supporta solo contenuti pubblicati."
 
 #: ./browser/controlpanel.pt:32
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: ./browser/controlpanel.pt:95
 msgid "State:"
-msgstr ""
+msgstr "Stato:"
 
 #: ./browser/newsletter.py:33
 #: ./portlet/subscribe.py:81
@@ -366,7 +366,7 @@ msgstr "Titolo della portlet"
 
 #: ./browser/controlpanel.pt:107
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ./browser/campaign.py:131
 msgid "Unknown campaign title"
@@ -378,11 +378,11 @@ msgstr "Aggiorna"
 
 #: ./browser/controlpanel.pt:47
 msgid "Username:"
-msgstr ""
+msgstr "Nome utente:"
 
 #: ./browser/controlpanel.pt:42
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #: ./browser/campaign.py:34
 msgid "We have problems processing your request. Not items found."
@@ -394,7 +394,7 @@ msgstr "Occorre confermare il tuo indirizzo di posta. Al fine di completare l'is
 
 #: ./browser/newsletter_subscribed.pt:17
 msgid "We need to confirm your email address. Please check your mailbox for the confirmation letter."
-msgstr ""
+msgstr "E' necessario confermare il tuo indirizzo di posta. Per favore, controlla la mail di conferma nella tua casella di posta"
 
 #: ./browser/campaign_wizard.pt:14
 msgid "You cannot start wizard configuration. Your campaign doesn't have any items and/or your mailchimp API configuration is wrong."
@@ -402,7 +402,7 @@ msgstr "Non puoi far partire il wizard di configurazione. La tua campagna non co
 
 #: ./browser/controlpanel.pt:91
 msgid "Zip:"
-msgstr ""
+msgstr "CAP:"
 
 #: ./slots/generic.py:30
 msgid "campaign_title"
