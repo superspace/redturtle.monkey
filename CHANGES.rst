@@ -6,6 +6,8 @@ Changelog
 
 - fixed translation issues [keul]
 - added script for compile translations [keul]
+- fixed issue that was showing empty site when surfing
+  "Campaign's items" settings [keul]
 
 
 1.2 (2013-03-26)

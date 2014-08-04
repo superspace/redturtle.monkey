@@ -53,7 +53,6 @@ CampaignSchema = ATContentTypeSchema.copy() + atapi.Schema((
             allow_sorting = True,
             show_indexes = False,
             force_close_on_insert = True,
-            show_results_without_query = True,
             label = _(u'label_campaign_items', default=u'Campaign\'s items'),
             description = '',
             visible = {'edit' : 'visible', 'view' : 'invisible' },
