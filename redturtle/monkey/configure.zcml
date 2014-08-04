@@ -25,7 +25,7 @@
       name="default"
       title="Redturtle Monkey"
       directory="profiles/default"
-      description="MailChimp integration for Plone."
+      description="MailChimp integration for Plone"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

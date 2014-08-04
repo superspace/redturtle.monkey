@@ -29,7 +29,8 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
-  <action title="Campaign wizard" action_id="campaign_wizard" category="object"
+  <action i18n:domain="plone"
+          title="Campaign wizard" action_id="campaign_wizard" category="object"
           condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
           url_expr="string:${object_url}/campaign_wizard" visible="True" i18n:attributes="title">
      <permission value="redturtle.monkey: Add Campaign" />

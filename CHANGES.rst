@@ -1,10 +1,11 @@
 Changelog
 =========
 
-1.3 (unreleased)
-----------------
+1.2.1 (unreleased)
+------------------
 
-- Nothing changed yet.
+- fixed translation issues [keul]
+- added script for compile translations [keul]
 
 
 1.2 (2013-03-26)

@@ -17,7 +17,7 @@ class MonkeySettingsEditForm(controlpanel.RegistryEditForm):
 
     schema = IMonkeySettings
     label = _(u"MailChimp settings")
-    description = _(u"""""")
+    description = ""
 
     def updateFields(self):
         super(MonkeySettingsEditForm, self).updateFields()
