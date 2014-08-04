@@ -2,3 +2,4 @@ recursive-include redturtle *
 include *.rst
 include *.txt
 global-exclude *.pyc
+global-exclude *.mo
