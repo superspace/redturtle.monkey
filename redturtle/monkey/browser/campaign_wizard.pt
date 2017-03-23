@@ -205,6 +205,11 @@
                return false;
              }
            }
+           $('#step-1 tbody').sortable({
+             items: "> tr",
+             appendTo: "parent",
+             helper: "clone"
+           }).disableSelection();
        });
 
 function validateSteps(step){

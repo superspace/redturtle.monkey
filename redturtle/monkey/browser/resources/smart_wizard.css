@@ -313,3 +313,8 @@
   padding: 0.3em 0.5em;
   min-width: 50%;
 }
+
+.swMain #step-1 tbody > tr,
+.swMain #step-1 tbody > tr label {
+    cursor: move;
+}

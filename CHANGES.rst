@@ -1,10 +1,11 @@
 Changelog
 =========
 
-1.2.2 (unreleased)
+1.3.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added possibility to move items in the table during
+  the first step of the wizard [pnicolli]
 
 
 1.2.1 (2014-08-04)
