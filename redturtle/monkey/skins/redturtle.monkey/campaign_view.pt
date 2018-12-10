@@ -10,7 +10,7 @@
     <div class="field" tal:condition="lc">
       <label class="formQuestion"><span i18n:translate="">Last camapaign</span>:</label>
       <br/>
-      <a target="blank_" href="" tal:attributes="href string:https://us6.admin.mailchimp.com/campaigns/wizard/confirm?id=${lc/id}" tal:content="lc/title"></a>
+      <a target="blank_" href="" tal:attributes="href string:https://us6.admin.mailchimp.com/campaigns/edit?id=${lc/id}" tal:content="lc/title"></a>
       <span i18n:translate="">created at</span>: <span tal:content="lc/date | string:"/>
     </div>
 
