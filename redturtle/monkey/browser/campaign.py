@@ -1,6 +1,6 @@
 from zExceptions import Redirect
 from persistent.dict import PersistentDict
-from postmonkey import MailChimpException
+# from postmonkey import MailChimpException
 from zope.component import getUtility
 from zope.component import subscribers
 from zope.annotation.interfaces import IAnnotations
@@ -164,7 +164,9 @@ class CampaignWizard(BrowserView):
             return self.request.response.redirect(
                                  '%s/@@campaign_created?id=%s' % \
                                  (self.context.absolute_url(), campaign_id))
-        except MailChimpException, e:
+        # XXX
+        # except MailChimpException, e:
+        except Exception, e:
             IStatusMessage(self.request).add(e, type='error')
             raise Redirect,\
                 self.request.response.redirect(self.context.absolute_url())

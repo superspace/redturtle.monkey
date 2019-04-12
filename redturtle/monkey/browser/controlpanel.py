@@ -3,8 +3,8 @@ from z3c.form.interfaces import WidgetActionExecutionError
 from zope.component import getUtility
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from postmonkey import MailChimpException
-from postmonkey.exceptions import PostRequestError
+# from postmonkey import MailChimpException
+# from postmonkey.exceptions import PostRequestError
 
 from plone.app.registry.browser import controlpanel
 
@@ -34,9 +34,11 @@ class MonkeySettingsControlPanel(controlpanel.ControlPanelFormWrapper):
         mailchimp = getUtility(IMonkeyLocator)
         try:
             return mailchimp.account()
-        except PostRequestError:
+        # XXX except PostRequestError:
+        except Exception, e:
             return []
-        except MailChimpException, error:
+        # XXX except MailChimpException, error:
+        except Exception, error:
             raise WidgetActionExecutionError(
                 Invalid(
                     u"Could not fetch account details from MailChimp. " +

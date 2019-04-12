@@ -1,12 +1,14 @@
-from postmonkey import PostMonkey
-from postmonkey import MailChimpException
-from postmonkey.exceptions import PostRequestError
+# XXX from postmonkey import PostMonkey
+# XXX from postmonkey import MailChimpException
+# XXX from postmonkey.exceptions import PostRequestError
 from plone.registry.interfaces import IRegistry
 from zope.interface import implements
 from zope.component import getUtility
 
 from redturtle.monkey.interfaces import IMonkeyLocator
 from redturtle.monkey.interfaces import IMonkeySettings
+
+from mailchimp3 import MailChimp
 
 
 def connect(func):
@@ -17,7 +19,7 @@ def connect(func):
         else:
             registry = getUtility(IRegistry)
             self.settings = registry.forInterface(IMonkeySettings)
-        self.mailchimp = PostMonkey(self.settings.api_key)
+        self.mailchimp = MailChimp(mc_api=self.settings.api_key, mc_user='luca.bellenghi@redturtle.it')
         return func(self, *args, **kwargs)
     return wrap_connect
 
@@ -30,7 +32,10 @@ class MonkeyLocator(object):
     @connect
     def ping(self, campaign=None):
         """Return simple ping to check if the API is correct"""
-        return self.mailchimp.ping()
+        KEYWORD = u'health_status'
+        STATUS = u"Everything's Chimpy!"
+        status = self.mailchimp.ping.get()
+        return KEYWORD in status and status[KEYWORD] == STATUS
 
     @connect
     def lists(self, campaign=None):
@@ -40,11 +45,12 @@ class MonkeyLocator(object):
         #print("MAILCHIMP LOCATOR: lists")
         try:
             # lists returns a dict with 'total' and 'data'. we just need data
-            return self.mailchimp.lists()['data']
-        except MailChimpException:
-            return []
-        except PostRequestError:
-            return []
+            return self.mailchimp.lists.all()['lists']
+        # XXX except MailChimpException:
+        # except Exception, e:
+        #     return []
+        # # XXX except PostRequestError:
+        #     return []
         except:
             raise
 
@@ -54,11 +60,14 @@ class MonkeyLocator(object):
         http://apidocs.mailchimp.com/api/rtfm/templates.func.php
         """
         try:
-            return self.mailchimp.templates()['user']
-        except MailChimpException:
-            return []
-        except PostRequestError:
-            return []
+            folder_id='75977c3d27'
+            return self.mailchimp.templates.all(folder_id=folder_id)['templates']
+        # # XXX except MailChimpException:
+        # except Exception:
+        #     return []
+        # # XXX except PostRequestError:
+        # except Exception:
+        #     return []
         except:
             raise
 
@@ -68,20 +77,39 @@ class MonkeyLocator(object):
 
     @connect
     def createCampaign(self, title, subject, list_id, template_id, content, campaign=None):
-        options = {'subject': subject,
-                   'list_id': list_id,
-                   'template_id': template_id,
-                   'title': title,
-                   'from_email': self.settings.from_email,
-                   'from_name': self.settings.from_name}
+        # options = {'subject': subject,  #
+        #            'list_id': list_id,  #
+        #            'template_id': template_id, #
+        #            'title': title, #
+        #            'from_email': self.settings.from_email, ##
+        #            'from_name': self.settings.from_name} ##
         try:
-            cid = self.mailchimp.campaignCreate(type='regular', options=options, content=content)
-            campaign = self.mailchimp.campaigns(filters={'campaign_id':cid})
-            return campaign['data'][0]['web_id']
-        except MailChimpException:
-            raise
-        except PostRequestError:
-            return None
+            payload = {
+                "recipients": {
+                        "list_id": list_id,
+                },
+                "settings": {
+                        "subject_line": subject,
+                        "from_name": self.settings.from_name,
+                        "reply_to": self.settings.from_email,
+                        "template_id": int(template_id),
+                        "title": title,
+                },
+                "type": "regular",
+            }
+            # cid = self.mailchimp.campaigns(type='regular', options=options, content=content)
+            cid = self.mailchimp.campaigns.create(payload)
+            # self.mailchimp.campaigns.set_content(campaign_id=cid['id'], data=content)
+            self.mailchimp.campaigns.content.update(campaign_id=cid['id'], data=content)
+            # XXX campaign = self.mailchimp.campaigns(filters={'campaign_id':cid}) sembra non servire
+            # XXX return campaign['data'][0]['web_id']
+            return cid[u'web_id']
+        # # except MailChimpException:
+        # except Exception:
+        #     raise
+        # # except PostRequestError:
+        # except Exception:
+        #     return None
         except:
             raise
 
@@ -100,5 +128,6 @@ class MonkeyLocator(object):
                 replace_interests=True,
                 send_welcome=False
             )
-        except MailChimpException:
+        # XXX except MailChimpException:
+        except Exception:
             raise

@@ -1,6 +1,8 @@
 import re
 
-from postmonkey import PostMonkey
+# XXX
+# from postmonkey import PostMonkey
+from mailchimp3 import MailChimp
 
 from zope import schema
 from zope.interface import Interface
@@ -101,8 +103,10 @@ class IMonkeySettings(Interface):
     def valid_api_key(data):
         if len(data.api_key) == 0:
             return
-        mailchimp = PostMonkey(data.api_key)
+        # XXX
+        mailchimp = MailChimp(data.api_key)
         try:
+            import pdb;pdb.set_trace()
             return mailchimp.ping()
         except:
             raise Invalid(
