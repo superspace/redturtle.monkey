@@ -1,10 +1,14 @@
 Changelog
 =========
 
-1.3.2 (unreleased)
+1.3.2v3API (unreleased)
 ------------------
 
-- Nothing changed yet.
+- [BreakingChange]: change the wrapper we use to communicate with mailchimp
+  from PostMonkey to mailchimp3 due to old unsupported API version.
+  Adapt the code to work with v3 API
+  Need to refactor and made some changes again.
+  [lucabel]
 
 
 1.3.1 (2018-12-10)
