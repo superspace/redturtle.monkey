@@ -100,7 +100,19 @@ class MonkeyLocator(object):
             # cid = self.mailchimp.campaigns(type='regular', options=options, content=content)
             cid = self.mailchimp.campaigns.create(payload)
             # self.mailchimp.campaigns.set_content(campaign_id=cid['id'], data=content)
-            self.mailchimp.campaigns.content.update(campaign_id=cid['id'], data=content)
+            content2 = {}
+            # XXX change the way these data are charged on dict
+            for key in content:
+                content2[key.replace('html_', '')] = content[key]
+            content.update(content2)
+
+            update_payload = {
+                "template": {
+                    "id": int(template_id),
+                    "sections": content
+                }
+            }
+            self.mailchimp.campaigns.content.update(campaign_id=cid['id'], data=update_payload)
             # XXX campaign = self.mailchimp.campaigns(filters={'campaign_id':cid}) sembra non servire
             # XXX return campaign['data'][0]['web_id']
             return cid[u'web_id']
