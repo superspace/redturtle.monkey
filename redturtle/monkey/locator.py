@@ -19,7 +19,7 @@ def connect(func):
         else:
             registry = getUtility(IRegistry)
             self.settings = registry.forInterface(IMonkeySettings)
-        self.mailchimp = MailChimp(mc_api=self.settings.api_key, mc_user='luca.bellenghi@redturtle.it')
+        self.mailchimp = MailChimp(mc_api=self.settings.api_key)
         return func(self, *args, **kwargs)
     return wrap_connect
 
@@ -60,6 +60,8 @@ class MonkeyLocator(object):
         http://apidocs.mailchimp.com/api/rtfm/templates.func.php
         """
         try:
+            # XXX OCCHIO CHE QUESTA E' PER FTA: SERVE FARE UN QUALCOSA NEL REGISTRY PER
+            # SALVARSELO. ANCHE SENZA INTERFACCIA FIGA. SOLO UNA ENTRY NEL REGISTRY.
             folder_id='75977c3d27'
             return self.mailchimp.templates.all(folder_id=folder_id)['templates']
         # # XXX except MailChimpException:
