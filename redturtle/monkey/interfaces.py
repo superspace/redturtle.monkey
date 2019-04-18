@@ -106,7 +106,6 @@ class IMonkeySettings(Interface):
         # XXX
         mailchimp = MailChimp(data.api_key)
         try:
-            import pdb;pdb.set_trace()
             return mailchimp.ping()
         except:
             raise Invalid(
