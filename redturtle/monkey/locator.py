@@ -9,6 +9,7 @@ from redturtle.monkey.interfaces import IMonkeyLocator
 from redturtle.monkey.interfaces import IMonkeySettings
 
 from mailchimp3 import MailChimp
+from mailchimp3 import helpers
 
 
 def connect(func):
@@ -62,7 +63,8 @@ class MonkeyLocator(object):
         try:
             # XXX OCCHIO CHE QUESTA E' PER FTA: SERVE FARE UN QUALCOSA NEL REGISTRY PER
             # SALVARSELO. ANCHE SENZA INTERFACCIA FIGA. SOLO UNA ENTRY NEL REGISTRY.
-            folder_id='75977c3d27'
+            #folder_id='75977c3d27'
+            folder_id = self.settings.folder_id
             return self.mailchimp.templates.all(folder_id=folder_id)['templates']
         # # XXX except MailChimpException:
         # except Exception:
@@ -128,20 +130,27 @@ class MonkeyLocator(object):
             raise
 
     @connect
+    def get_user_data_subscription(self, email, list_id):
+        import pdb;pdb.set_trace()
+        helpers.check_email(email)
+        #md5_email = helpers.get_subscriber_hash(email)
+        #info_url = '/3.0/lists/%s/members/%s' % (list_id, md5_email)
+        #result = self.mailchimp.lists._mc_client._get(url=info_url)
+        
+        data = {"members": 
+                [{"email_address": email, "status": "pending"}],
+                "update_existing": True
+               }
+
+        return data
+
+    @connect
     def subscribe(self, list_id, email_address, merge_vars, email_type):
         if not email_type:
             email_type = u'html'
+        data = self.get_user_data_subscription(email_address, list_id)
         try:
-            self.mailchimp.listSubscribe(
-                id=list_id,
-                email_address=email_address,
-                merge_vars=merge_vars,
-                email_type=email_type,
-                double_optin=True,
-                update_existing=False,
-                replace_interests=True,
-                send_welcome=False
-            )
+            self.mailchimp.lists.update_members(list_id, data)
         # XXX except MailChimpException:
         except Exception:
             raise

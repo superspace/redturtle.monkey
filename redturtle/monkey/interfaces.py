@@ -99,15 +99,22 @@ class IMonkeySettings(Interface):
                       default=u"Please enter FROM email name."),
         required=True)
 
+    folder_id = schema.TextLine(
+        title=_(u"Template folder id"),
+        description=_(u"help_from_templatefolder_id",
+                      default=u"Please enter a valid id for the template folder."),
+        required=True)
+
     @invariant
     def valid_api_key(data):
+        if not getattr(data, 'api_key', None):
+            return
         if len(data.api_key) == 0:
             return
         # XXX
         mailchimp = MailChimp(data.api_key)
         try:
-            import pdb;pdb.set_trace()
-            return mailchimp.ping()
+            return mailchimp.ping
         except:
             raise Invalid(
                 u"Your MailChimp API key is not valid. Please go " +

@@ -19,6 +19,7 @@
   <include package=".content" />
   <include package=".portlet" />
   <include package=".slots" />
+  <include package=".upgrades" />
   <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
 
   <genericsetup:registerProfile

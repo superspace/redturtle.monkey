@@ -3,7 +3,8 @@ Changelog
 
 1.3.2v3API (unreleased)
 ------------------
-
+- fixed some API calls to get template folder id and fixed portlet to subscribe new users.
+  [daniele]
 - [BreakingChange]: change the wrapper we use to communicate with mailchimp
   from PostMonkey to mailchimp3 due to old unsupported API version.
   Adapt the code to work with v3 API
