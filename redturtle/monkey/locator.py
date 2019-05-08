@@ -131,7 +131,6 @@ class MonkeyLocator(object):
 
     @connect
     def get_user_data_subscription(self, email, list_id):
-        import pdb;pdb.set_trace()
         helpers.check_email(email)
         #md5_email = helpers.get_subscriber_hash(email)
         #info_url = '/3.0/lists/%s/members/%s' % (list_id, md5_email)
