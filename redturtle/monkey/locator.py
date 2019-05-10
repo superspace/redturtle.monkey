@@ -40,13 +40,9 @@ class MonkeyLocator(object):
         """Return all available MailChimp lists.
         http://apidocs.mailchimp.com/api/rtfm/lists.func.php
         """
-        #print("MAILCHIMP LOCATOR: lists")
         try:
-            # lists returns a dict with 'total' and 'data'. we just need data
-            data = self.mailchimp.lists.all(get_all=True, fields="lists.name,lists.id")
-            return data['lists']
-        except Exception:
-            return []
+            fields = "lists.name,lists.id"
+            return self.mailchimp.lists.all(get_all=True, fields=fields)['lists']
         except Exception:
             return []
         except:
@@ -58,10 +54,8 @@ class MonkeyLocator(object):
         http://apidocs.mailchimp.com/api/rtfm/templates.func.php
         """
         try:
-            data = self.mailchimp.templates.all(get_all=True, type="user", fields="templates.id,templates.name")
-            return data['templates']
-        except Exception:
-            return []
+            fields = "templates.id,templates.name"
+            return self.mailchimp.templates.all(get_all=True, type="user", fields=fields)['templates']
         except Exception:
             return []
         except:
@@ -72,7 +66,7 @@ class MonkeyLocator(object):
         return {};#self.mailchimp.getAccountDetails()
 
     @connect
-    def createCampaign(self, title, subject, list_id, template_id, content, campaign=None):
+    def createCampaign(self, title, subject, list_id, template_id, content):
         options = {
             'type': 'regular',
             'recipients': {
@@ -85,25 +79,23 @@ class MonkeyLocator(object):
                 'title': title,
             }
         }
-        # try:
-        response = self.mailchimp.campaigns.create(options)
-        cid = response['id']
+        try:
+            campaign = self.mailchimp.campaigns.create(options)
 
-        data = {
-            'template': {
-                'id': int(template_id),
-                'sections': content
+            id = campaign['id']
+            data = {
+                'template': {
+                    'id': int(template_id),
+                    'sections': content
+                }
             }
-        }
-        self.mailchimp.campaigns.content.update(campaign_id=cid, data=data)
+            self.mailchimp.campaigns.content.update(campaign_id=id, data=data)
 
-        return cid
-        # except Exception:
-        #     raise
-        # except Exception:
-        #     return None
-        # except:
-        #     raise
+            return campaign['web_id']
+        except Exception:
+            raise
+        except:
+            raise
 
     @connect
     def subscribe(self, list_id, email_address, merge_vars, email_type):

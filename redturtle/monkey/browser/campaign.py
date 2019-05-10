@@ -155,22 +155,21 @@ class CampaignWizard(BrowserView):
                                                   self.context.absolute_url())
 
 
-        # try:
-        campaign_id = mailchimp.createCampaign(subject=subject,
-                                        list_id=list_id,
-                                        title='%s %s' % (title, description),
-                                        content=content,
-                                        template_id=template_id,
-                                        campaign=self.context)
-        self.addLastCampaign(campaign_id, title)
-        IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
-        return self.request.response.redirect(
-                                '%s/@@campaign_created?id=%s' % \
-                                (self.context.absolute_url(), campaign_id))
-        # except Exception, e:
-        #     IStatusMessage(self.request).add(e, type='error')
-        #     raise Redirect,\
-        #         self.request.response.redirect(self.context.absolute_url())
+        try:
+            campaign_id = mailchimp.createCampaign(subject=subject,
+                                            list_id=list_id,
+                                            title='%s %s' % (title, description),
+                                            content=content,
+                                            template_id=template_id)
+            self.addLastCampaign(campaign_id, title)
+            IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
+            return self.request.response.redirect(
+                                    '%s/@@campaign_created?id=%s' % \
+                                    (self.context.absolute_url(), campaign_id))
+        except Exception, e:
+            IStatusMessage(self.request).add(e, type='error')
+            raise Redirect,\
+                self.request.response.redirect(self.context.absolute_url())
 
     def generateCampaignContent(self, objs=None, **kw):
         """Tries to render the html content for the campaign items,
@@ -193,5 +192,5 @@ class CampaignWizard(BrowserView):
             html = slot.render(objs=objs, **kw)
             if not html: # Let's skip empty slots
                 continue
-            content['html_%s' % slot.name] = html
+            content['%s' % slot.name] = html
         return content
