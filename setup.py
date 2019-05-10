@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.3.2.dev0'
+version = '1.4.0-alpha1'
 description = 'MailChimp integration for Plone.'
 long_description = \
     open("README.rst").read() + "\n" + \
@@ -34,7 +34,7 @@ setup(name='redturtle.monkey',
           'Products.CMFPlone',
           'plone.app.portlets',
           'plone.app.registry',
-          'postmonkey',
+          'mailchimp3',
           'jarn.jsi18n',
       ],
       extras_require={

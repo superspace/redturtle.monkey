@@ -16,7 +16,7 @@
               </dd>
         </dl>
         </tal:notallowed>
-        <form action="" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard"
+        <form action="" id="wizard_form" method="POST" tal:attributes="action string:${context/absolute_url}/campaign_wizard"
            tal:define="sections view/list_campaign_items"
           tal:condition="view/available">
 <div metal:use-macro="context/global_statusmessage/macros/portal_message">
@@ -199,7 +199,7 @@
            }
            function onFinishCallback(){
              if(validateSteps(2)){
-               $('form').submit();
+               $('#wizard_form').submit();
              }
              else{
                return false;

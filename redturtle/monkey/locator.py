@@ -1,6 +1,9 @@
-from postmonkey import PostMonkey
-from postmonkey import MailChimpException
-from postmonkey.exceptions import PostRequestError
+# from postmonkey import PostMonkey
+# from postmonkey import MailChimpException
+# from postmonkey.exceptions import PostRequestError
+
+from mailchimp3 import MailChimp
+
 from plone.registry.interfaces import IRegistry
 from zope.interface import implements
 from zope.component import getUtility
@@ -17,7 +20,7 @@ def connect(func):
         else:
             registry = getUtility(IRegistry)
             self.settings = registry.forInterface(IMonkeySettings)
-        self.mailchimp = PostMonkey(self.settings.api_key)
+        self.mailchimp = MailChimp(self.settings.api_key)
         return func(self, *args, **kwargs)
     return wrap_connect
 
@@ -30,7 +33,7 @@ class MonkeyLocator(object):
     @connect
     def ping(self, campaign=None):
         """Return simple ping to check if the API is correct"""
-        return self.mailchimp.ping()
+        return self.mailchimp.ping.get()
 
     @connect
     def lists(self, campaign=None):
@@ -40,10 +43,11 @@ class MonkeyLocator(object):
         #print("MAILCHIMP LOCATOR: lists")
         try:
             # lists returns a dict with 'total' and 'data'. we just need data
-            return self.mailchimp.lists()['data']
-        except MailChimpException:
+            data = self.mailchimp.lists.all(get_all=True, fields="lists.name,lists.id")
+            return data['lists']
+        except Exception:
             return []
-        except PostRequestError:
+        except Exception:
             return []
         except:
             raise
@@ -54,51 +58,68 @@ class MonkeyLocator(object):
         http://apidocs.mailchimp.com/api/rtfm/templates.func.php
         """
         try:
-            return self.mailchimp.templates()['user']
-        except MailChimpException:
+            data = self.mailchimp.templates.all(get_all=True, type="user", fields="templates.id,templates.name")
+            return data['templates']
+        except Exception:
             return []
-        except PostRequestError:
+        except Exception:
             return []
         except:
             raise
 
     @connect
     def account(self, campaign=None):
-        return self.mailchimp.getAccountDetails()
+        return {};#self.mailchimp.getAccountDetails()
 
     @connect
     def createCampaign(self, title, subject, list_id, template_id, content, campaign=None):
-        options = {'subject': subject,
-                   'list_id': list_id,
-                   'template_id': template_id,
-                   'title': title,
-                   'from_email': self.settings.from_email,
-                   'from_name': self.settings.from_name}
-        try:
-            cid = self.mailchimp.campaignCreate(type='regular', options=options, content=content)
-            campaign = self.mailchimp.campaigns(filters={'campaign_id':cid})
-            return campaign['data'][0]['web_id']
-        except MailChimpException:
-            raise
-        except PostRequestError:
-            return None
-        except:
-            raise
+        options = {
+            'type': 'regular',
+            'recipients': {
+                'list_id': list_id
+            },
+            'settings': {
+                'subject_line': subject,
+                'reply_to': self.settings.from_email,
+                'from_name': self.settings.from_name,
+                'title': title,
+            }
+        }
+        # try:
+        response = self.mailchimp.campaigns.create(options)
+        cid = response['id']
+
+        data = {
+            'template': {
+                'id': int(template_id),
+                'sections': content
+            }
+        }
+        self.mailchimp.campaigns.content.update(campaign_id=cid, data=data)
+
+        return cid
+        # except Exception:
+        #     raise
+        # except Exception:
+        #     return None
+        # except:
+        #     raise
 
     @connect
     def subscribe(self, list_id, email_address, merge_vars, email_type):
-        if not email_type:
-            email_type = u'html'
-        try:
-            self.mailchimp.listSubscribe(
-                id=list_id,
-                email_address=email_address,
-                merge_vars=merge_vars,
-                email_type=email_type,
-                double_optin=True,
-                update_existing=False,
-                replace_interests=True,
-                send_welcome=False
-            )
-        except MailChimpException:
-            raise
+        # if not email_type:
+        #     email_type = u'html'
+        # try:
+        #     self.mailchimp.listSubscribe(
+        #         id=list_id,
+        #         email_address=email_address,
+        #         merge_vars=merge_vars,
+        #         email_type=email_type,
+        #         double_optin=True,
+        #         update_existing=False,
+        #         replace_interests=True,
+        #         send_welcome=False
+        #     )
+        # except Exception:
+        #     raise
+        pass

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.statusmessages.interfaces import IStatusMessage
 
-from postmonkey import MailChimpException
-
 from zope.interface import Invalid
 from zope.interface import implements
 from zope.annotation.interfaces import IAttributeAnnotatable
@@ -78,7 +76,7 @@ class NewsletterSubscriberForm(extensible.ExtensibleForm, form.Form):
                     merge_vars=data,
                     email_type=email_type,
                 )
-            except MailChimpException, error:
+            except Exception, error:
                 if error.code == 214:
                     error_msg = _(
                         u"mailchimp_error_msg_already_subscribed",

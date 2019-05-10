@@ -1,6 +1,6 @@
 from zExceptions import Redirect
 from persistent.dict import PersistentDict
-from postmonkey import MailChimpException
+from mailchimp3 import MailChimp
 from zope.component import getUtility
 from zope.component import subscribers
 from zope.annotation.interfaces import IAnnotations
@@ -65,7 +65,7 @@ class CampaignWizard(BrowserView):
     def available(self):
         mailchimp = getUtility(IMonkeyLocator)
         try:
-            mailchimp.ping(campaign=self.context)
+            mailchimp.ping()
         except:
             return False
         if not self.context.getCampaign_items():
@@ -147,27 +147,30 @@ class CampaignWizard(BrowserView):
         title = form.get('campaign_title')
 
         content = self.generateCampaignContent(objs=form.get('items'), **form)
+
         if not content:
             IStatusMessage(self.request).add(_(u'Couldn\'t generate campaign items.'))
             raise Redirect,\
                 self.request.response.redirect('%s/campaign_wizard' % \
                                                   self.context.absolute_url())
-        try:
-            campaign_id = mailchimp.createCampaign(subject=subject,
-                                          list_id=list_id,
-                                          title='%s %s' % (title, description),
-                                          content=content,
-                                          template_id=template_id,
-                                          campaign=self.context)
-            self.addLastCampaign(campaign_id, title)
-            IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
-            return self.request.response.redirect(
-                                 '%s/@@campaign_created?id=%s' % \
-                                 (self.context.absolute_url(), campaign_id))
-        except MailChimpException, e:
-            IStatusMessage(self.request).add(e, type='error')
-            raise Redirect,\
-                self.request.response.redirect(self.context.absolute_url())
+
+
+        # try:
+        campaign_id = mailchimp.createCampaign(subject=subject,
+                                        list_id=list_id,
+                                        title='%s %s' % (title, description),
+                                        content=content,
+                                        template_id=template_id,
+                                        campaign=self.context)
+        self.addLastCampaign(campaign_id, title)
+        IStatusMessage(self.request).add(_(u'Mailchimp campaign created.'))
+        return self.request.response.redirect(
+                                '%s/@@campaign_created?id=%s' % \
+                                (self.context.absolute_url(), campaign_id))
+        # except Exception, e:
+        #     IStatusMessage(self.request).add(e, type='error')
+        #     raise Redirect,\
+        #         self.request.response.redirect(self.context.absolute_url())
 
     def generateCampaignContent(self, objs=None, **kw):
         """Tries to render the html content for the campaign items,
